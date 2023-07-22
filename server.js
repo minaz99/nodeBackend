@@ -28,6 +28,7 @@ app.use(
 app.use(flash());
 */
 app.use(express.json());
+/*
 app.get("/", (req, res) => {
   res.json(msg);
 });
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
 app.get("/contracts", authToken, (req, res) => {
   res.json("Authorized");
 });
+*/
 
 app.post("/login", (req, res) => {
   let { email, password } = req.body;
