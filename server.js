@@ -55,8 +55,8 @@ app.post("/login", (req, res) => {
       res.status(404);
       res.json("User doesn't exist");
     }*/
-      res.json(user);
-    }
+    res.json(user);
+    //}
   });
 });
 
