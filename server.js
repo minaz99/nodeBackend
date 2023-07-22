@@ -37,6 +37,11 @@ app.get("/contracts", authToken, (req, res) => {
   res.json("Authorized");
 });
 
+app.post("/hi", (req, res) => {
+  res.json("working");
+});
+
+/*
 app.post("/login", (req, res) => {
   let { email, password } = req.body;
   const user = { email: email };
@@ -85,7 +90,8 @@ app.post("/register", async (req, res) => {
   } else {
     console.log("not all fields are filled");
   }
-});
+}); 
+*/
 
 function authToken(req, res, next) {
   const authHeader = req.headers["authorization"];
