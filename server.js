@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const { pool } = require("./dbConfig");
 const bcrypt = require("bcrypt");
 const msg = { msg: "hello there" };
+const port = process.env.PORT || 4000;
 /*const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
@@ -96,4 +97,4 @@ function authToken(req, res, next) {
   });
 }
 
-app.listen(4000);
+app.listen(port);
