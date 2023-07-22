@@ -42,8 +42,8 @@ app.post("/login", (req, res) => {
   const user = { email: email };
   pool.query(`SELECT * FROM users where email = $1`, [email], (err, result) => {
     if (err) throw err;
-    if (result.rowCount > 0) {
-      /*const userRow = result.rows[0];
+    /*if (result.rowCount > 0) {
+      const userRow = result.rows[0];
       bcrypt.compare(password, userRow.password, (err, isMatch) => {
         if (err) throw err;
         if (isMatch) {
