@@ -41,9 +41,9 @@ app.post("/login", (req, res) => {
   let { email, password } = req.body;
   const user = { email: email };
   pool.query(`SELECT * FROM users where email = $1`, [email], (err, result) => {
-    /*if (err) throw err;
+    if (err) throw err;
     if (result.rowCount > 0) {
-      const userRow = result.rows[0];
+      /*const userRow = result.rows[0];
       bcrypt.compare(password, userRow.password, (err, isMatch) => {
         if (err) throw err;
         if (isMatch) {
@@ -55,7 +55,8 @@ app.post("/login", (req, res) => {
       res.status(404);
       res.json("User doesn't exist");
     }*/
-    res.json(user);
+      res.json(user);
+    }
   });
 });
 
