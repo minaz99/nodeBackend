@@ -37,15 +37,10 @@ app.get("/contracts", authToken, (req, res) => {
   res.json("Authorized");
 });
 
-app.post("/hi", (req, res) => {
-  res.json("working");
-});
-
-/*
 app.post("/login", (req, res) => {
   let { email, password } = req.body;
   const user = { email: email };
-  pool.query(`SELECT * FROM users where email = $1`, [email], (err, result) => {
+  /*pool.query(`SELECT * FROM users where email = $1`, [email], (err, result) => {
     if (err) throw err;
     if (result.rowCount > 0) {
       const userRow = result.rows[0];
@@ -60,9 +55,11 @@ app.post("/login", (req, res) => {
       res.status(404);
       res.json("User doesn't exist");
     }
-  });
+  });*/
+  res.json(user);
 });
 
+/*
 app.post("/register", async (req, res) => {
   let { name, email, password } = req.body;
   if (name && email && password) {
