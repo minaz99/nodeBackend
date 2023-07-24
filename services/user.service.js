@@ -34,7 +34,7 @@ const userServices = {
           `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
           [email, name, password]
         );
-        res.status(200).json({ data: result2.row[0] });
+        res.status(200).json({ data: result2.rows[0] });
       }
       //}
     } catch (err) {
