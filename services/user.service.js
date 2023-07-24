@@ -26,7 +26,7 @@ const userServices = {
     }
   },
 
-  register: async (err, res) => {
+  register: async (req, res) => {
     try {
       let { email, name, password } = req.body;
       let hashedPassword = await bcrypt.hash(password, 10);
