@@ -36,12 +36,12 @@ const userServices = {
       const { rows } = await db.query(`SELECT * FROM users where email = $1`, [
         email,
       ]);
-      if (rows[0]) res.status(409).json({ data: rows[0] });
+      if (rows[0]) res.status(409).json("User exists");
       //else res.json("let's go");
       else {
         const sql = `INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *`;
-        const { rows } = await db.query(sql, [email, name, hashedPassword]);
-        res.json({ name: name });
+        const { newRows } = await db.query(sql, [email, name, hashedPassword]);
+        res.json({ data: newRows[0] });
       }
     } catch (err) {
       res.json({ hi: "let's see" });
