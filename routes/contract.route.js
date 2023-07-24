@@ -1,8 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const cs = require("../services/chec.service");
-
 function authToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -13,7 +10,7 @@ function authToken(req, res, next) {
     next();
   });
 }
-
-router.get("/", cs.def);
-//router.get("/contracts", authToken, cs.contract);
-module.exports = router;
+const contractService = require("../services/contract.service");
+router.get("/", authToken, contractService.getAllContracts);
+router.get("/:id", authToken, contractService.getContractByID);
+router.post("/", authToken, contractService.createContract);
