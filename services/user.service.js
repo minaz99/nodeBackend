@@ -20,12 +20,12 @@ const userServices = {
             res.json({ accessToken: accessToken, name: userRow.name });
           }
         });*/
-        res.json({ Message: "Logged in" });
+        res.status(200).json({ Message: "Logged in" });
       }
       res.status(404).json("User doesn't exist");
     } catch (err) {
       //res.status(404);
-      res.json({ hello: "there" });
+      res.json({ hello: err.msg });
     }
   },
 
