@@ -32,11 +32,10 @@ const userServices = {
     try {
       let { email, name, password } = req.body;
       let hashedPassword = await bcrypt.hash(password, 10);
-      const { rowsCount } = await db.query(
-        `SELECT * FROM users where email = $1`,
-        [email]
-      );
-      if (rowsCount > 0) res.status(409).json("User already exists");
+      const { rows } = await db.query(`SELECT * FROM users where email = $1`, [
+        email,
+      ]);
+      if (rows[0]) res.status(409).json("User already exists");
       else {
         const sql =
           "INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *";
