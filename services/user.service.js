@@ -32,9 +32,9 @@ const userServices = {
       else {
         const result2 = await db.query(
           `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
-          [email, name, password]
+          [email, name, hashedPassword]
         );
-        res.status(200).json({ data: result2.rows[0] });
+        res.json({ data: name });
       }
       //}
     } catch (err) {
