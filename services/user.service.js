@@ -38,11 +38,7 @@ const userServices = {
       else {
         const sql =
           "INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *";
-        const { rows } = await postgre.query(sql, [
-          email,
-          name,
-          hashedPassword,
-        ]);
+        const { rows } = await db.query(sql, [email, name, hashedPassword]);
         res.json({ name: name });
       }
     } catch (err) {
