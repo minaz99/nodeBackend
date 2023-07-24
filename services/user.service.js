@@ -42,7 +42,7 @@ const userServices = {
         res.json({ name: name });
       }
     } catch (err) {
-      res.json({ error: err });
+      res.json({ error: err.msg });
     }
   },
 };
