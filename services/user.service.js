@@ -36,12 +36,13 @@ const userServices = {
         email,
       ]);
       if (rows[0]) res.status(409).json("User already exists");
-      else {
+      else res.json("let's go");
+      /* else {
         const sql =
           "INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *";
         const { rows } = await db.query(sql, [email, name, hashedPassword]);
         res.json({ name: "let's see" });
-      }
+      }*/
     } catch (err) {
       res.json({ hi: "let's see" });
     }
