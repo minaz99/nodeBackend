@@ -34,7 +34,7 @@ const userServices = {
           `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
           [email, name, hashedPassword]
         );
-        res.json({ data: name });
+        res.status(200).json({ data: name });
       }
       //}
     } catch (err) {
