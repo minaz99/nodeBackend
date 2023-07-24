@@ -40,8 +40,8 @@ const userServices = {
       //else res.json("let's go");
       else {
         const sql = `INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *`;
-        const { newRows } = await db.query(sql, [email, name, hashedPassword]);
-        res.json({ data: newRows[0] });
+        //const { newRows } = await db.query(sql, [email, name, hashedPassword]);
+        res.json({ data: "yes sir" });
       }
     } catch (err) {
       res.json({ hi: "let's see" });
