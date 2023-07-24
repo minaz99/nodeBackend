@@ -24,24 +24,20 @@ const userServices = {
   register: async (req, res) => {
     try {
       let { email, name, password } = req.body;
-      /*let hashedPassword = await bcrypt.hash(password, 10);
-      const { rows } = await db.query(`SELECT * FROM users where email = $1`, [
+      let hashedPassword = await bcrypt.hash(password, 10);
+      const result = await db.query(`SELECT * FROM users where email = $1`, [
         email,
       ]);
-      if (rows[0]) res.status(409).json("User exists");
-      //else res.json("let's go");
-      */
-      // else {
-      //const sql = `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`;
-      db.query(`INSERT INTO users (EMAIL,NAME,PASSWORD) VALUES ($1, $2, $3)`, [
-        email,
-        name,
-        hashedPassword,
-      ]);
-      res.json({ data: "nvm" });
+      result.rowCount > 0
+        ? res.status(409).json("User exists")
+        : db.query(
+            `INSERT INTO users (EMAIL,NAME,PASSWORD) VALUES ($1, $2, $3)`,
+            [email, name, hashedPassword]
+          );
+      res.json({ data: result.rows[0] });
       //}
     } catch (err) {
-      res.json({ hi: "let's see" });
+      res.json({ error: err.msg });
     }
   },
 };
