@@ -12,9 +12,16 @@ const userServices = {
       const result = await db.query(`SELECT * FROM users where email = $1`, [
         email,
       ]);
-      result.rowCount > 0
-        ? res.json("logged in")
-        : res.status(404).json("User doesn't exist");
+
+      if (result.rowCount > 0) {
+        bcrypt.compare(password, userRow.password, (err, isMatch) => {
+          if (err) throw err;
+          if (isMatch) {
+            const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+            res.json({ accessToken: accessToken, name: userRow.name });
+          }
+        });
+      } else res.status(404).json("User doesn't exist");
     } catch (err) {
       //res.status(404);
       res.json({ error: err.msg });
