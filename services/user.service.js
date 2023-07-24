@@ -29,7 +29,7 @@ const userServices = {
         email,
       ]);
       if (result.rowCount > 0) res.status(409).json("User exists");
-      else res.json("done");
+      else res.status(409).json("User exists");
       //}
     } catch (err) {
       res.json({ error: err.msg });
