@@ -30,8 +30,11 @@ const userServices = {
       ]);
       result.rowCount > 0
         ? res.status(409).json("User exists")
-        : res.json("Registered");
-      //res.json({ data: result.rowCount });
+        : await db.query(
+            `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
+            [email, name, hashedPassword]
+          );
+      res.json("registered");
       //}
     } catch (err) {
       res.json({ error: err.msg });
