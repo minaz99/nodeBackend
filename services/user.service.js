@@ -9,10 +9,11 @@ const userServices = {
     try {
       let { email, password } = req.body;
       const user = { email: email };
-      const { rows } = await db.query(`SELECT * FROM users where email = $1`, [
-        email,
-      ]);
-      if (rows[0]) {
+      const { rowCount } = await db.query(
+        `SELECT * FROM users where email = $1`,
+        [email]
+      );
+      if (rowCount > 0) {
         /*   bcrypt.compare(password, userRow.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
@@ -20,7 +21,7 @@ const userServices = {
             res.json({ accessToken: accessToken, name: userRow.name });
           }
         });*/
-        res.status(200).json({ Message: "Logged in" });
+        res.json("logged in");
       }
       res.status(404).json("User doesn't exist");
     } catch (err) {
