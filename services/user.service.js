@@ -39,8 +39,8 @@ const userServices = {
       if (rows[0]) res.status(409).json("User exists");
       //else res.json("let's go");
       else {
-        const sql = `INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *`;
-        //const { newRows } = await db.query(sql, [email, name, hashedPassword]);
+        const sql = `INSERT INTO users(email,name,password) VALUES($1, $2, $3)`;
+        const { newRows } = await db.query(sql, [email, name, hashedPassword]);
         res.json({ data: "yes sir" });
       }
     } catch (err) {
