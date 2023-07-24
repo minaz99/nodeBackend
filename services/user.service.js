@@ -32,7 +32,7 @@ const userServices = {
       else {*/
       const result = await db.query(
         `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
-        [email, name, hashedPassword]
+        [email, name, password]
       );
       res.status(200).json({ data: result.row[0] });
       // }
