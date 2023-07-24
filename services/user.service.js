@@ -30,7 +30,7 @@ const userServices = {
       ]);
       if (result.rowCount > 0) res.status(409).json("User exists");
       else {
-        res.status(200).json("User exists");
+        res.status(200).json("Registered");
       }
       //}
     } catch (err) {
