@@ -40,8 +40,11 @@ const userServices = {
       //else res.json("let's go");
       */
       // else {
-      const sql = `INSERT INTO users(email,name,password) VALUES($1, $2, $3)`;
-      const { newRows } = await db.query(sql, [email, name, hashedPassword]);
+      //const sql = `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`;
+      const { newRows } = await db.query(
+        `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
+        [email, name, hashedPassword]
+      );
       res.json({ data: newRows[0] });
       //}
     } catch (err) {
