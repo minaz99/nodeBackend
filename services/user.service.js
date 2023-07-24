@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
 app.use(express.json());
+import { dv } from "@vercel/postgres";
 const userServices = {
   login: async (req, res) => {
     try {
@@ -20,7 +21,7 @@ const userServices = {
             res.json({ accessToken: accessToken, name: userRow.name });
           }
         });*/
-        res.json("logged in");
+        res.json({ Message: "Logged in" });
       }
       res.status(404).json("User doesn't exist");
     } catch (err) {
