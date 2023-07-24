@@ -23,7 +23,9 @@ app.get("/contracts", authToken, (req, res) => {
 }*/
 
 const userRouter = require("./routes/user.route");
+const checkRouter = require("./routes/chec.route");
 app.use("/user", userRouter);
+app.use("/", checkRouter);
 app.listen(process.env.PORT, () =>
   console.log("Server is running on port 5000")
 );
