@@ -14,11 +14,11 @@ const userServices = {
       ]);
 
       if (result.rowCount > 0) {
-        bcrypt.compare(password, userRow.password, (err, isMatch) => {
+        bcrypt.compare(password, result.rows[0].password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-            res.json({ accessToken: accessToken, name: userRow.name });
+            res.json({ accessToken: accessToken, name: result.rows[0].name });
           }
         });
       } else res.status(404).json("User doesn't exist");
