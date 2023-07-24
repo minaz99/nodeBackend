@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const jwt = require("jsonwebtoken");
 const cs = require("../services/chec.service");
 
 function authToken(req, res, next) {
