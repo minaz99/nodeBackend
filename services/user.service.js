@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
 app.use(express.json());
-import { dv } from "@vercel/postgres";
 const userServices = {
   login: async (req, res) => {
     try {
