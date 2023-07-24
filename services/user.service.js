@@ -6,9 +6,9 @@ const app = express();
 app.use(express.json());
 const userServices = {
   login: async (req, res) => {
-    let { email, password } = req.body;
-    const user = { email: email };
     try {
+      let { email, password } = req.body;
+      const user = { email: email };
       const { rows } = await db.query(`SELECT * FROM users where email = $1`, [
         email,
       ]);
