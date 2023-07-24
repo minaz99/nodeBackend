@@ -13,17 +13,17 @@ const userServices = {
         `SELECT * FROM users where email = $1`,
         [email]
       );
-      if (rowCount > 0) {
+      /*if (rowCount > 0) {
         /*   bcrypt.compare(password, userRow.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
             res.json({ accessToken: accessToken, name: userRow.name });
           }
-        });*/
+        });
         res.json("logged in");
-      }
-      res.status(404).json("User doesn't exist");
+      }*/
+      res.status(404).json(rowCount);
     } catch (err) {
       //res.status(404);
       res.json({ hello: err.msg });
