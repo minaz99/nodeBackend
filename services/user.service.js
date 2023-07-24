@@ -28,7 +28,7 @@ const userServices = {
 
   register: async (err, res) => {
     try {
-      let { name, email, password } = req.body;
+      let { email, name, password } = req.body;
       let hashedPassword = await bcrypt.hash(password, 10);
       const { rowsCount } = await db.query(
         `SELECT * FROM users where email = $1`,
