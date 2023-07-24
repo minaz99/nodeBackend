@@ -28,13 +28,8 @@ const userServices = {
       const result = await db.query(`SELECT * FROM users where email = $1`, [
         email,
       ]);
-      result.rowCount > 0
-        ? res.status(409).json("User exists")
-        : await db.query(
-            `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
-            [email, name, hashedPassword]
-          );
-      res.json("registered");
+      if (result.rowCount > 0) res.status(409).json("User exists");
+      else res.json("done");
       //}
     } catch (err) {
       res.json({ error: err.msg });
