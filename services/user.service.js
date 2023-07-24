@@ -13,18 +13,19 @@ const userServices = {
         email,
       ]);
       if (rows[0]) {
-        bcrypt.compare(password, userRow.password, (err, isMatch) => {
+        /*bcrypt.compare(password, userRow.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
             res.json({ accessToken: accessToken, name: userRow.name });
           }
-        });
+        });*/
+        res.json("logged in");
       }
       res.status(404).json("User doesn't exists");
     } catch (err) {
       //res.status(404);
-      res.json({ error: err.msg });
+      res.json({ hello: "there" });
     }
   },
 
