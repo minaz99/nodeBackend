@@ -41,10 +41,10 @@ const userServices = {
         const sql =
           "INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *";
         const { rows } = await db.query(sql, [email, name, hashedPassword]);
-        res.json({ name: name });
+        res.json({ name: "let's see" });
       }
     } catch (err) {
-      res.json({ error: err.msg });
+      res.json({ hi: "let's see" });
     }
   },
 };
