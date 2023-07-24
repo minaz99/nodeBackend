@@ -13,14 +13,14 @@ const userServices = {
         email,
       ]);
       if (rows[0]) {
-        /*bcrypt.compare(password, userRow.password, (err, isMatch) => {
+        bcrypt.compare(password, userRow.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
             res.json({ accessToken: accessToken, name: userRow.name });
           }
-        });*/
-        res.json("logged in");
+        });
+        //res.json("logged in");
       }
       res.status(404).json("User doesn't exists");
     } catch (err) {
@@ -39,8 +39,7 @@ const userServices = {
       if (rows[0]) res.status(409).json("User already exists");
       //else res.json("let's go");
       else {
-        const sql =
-          "INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *";
+        const sql = `INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *`;
         const { rows } = await db.query(sql, [email, name, hashedPassword]);
         res.json({ name: name });
       }
