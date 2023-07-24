@@ -42,7 +42,7 @@ const userServices = {
       // else {
       //const sql = `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`;
       const { newRows } = await db.query(
-        `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
+        `INSERT INTO users (EMAIL,NAME,PASSWORD) VALUES ($1, $2, $3)`,
         [email, name, hashedPassword]
       );
       res.json({ data: newRows[0] });
