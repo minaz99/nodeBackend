@@ -36,14 +36,14 @@ const userServices = {
       );
       if (rowsCount > 0) res.status(409).json("User already exists");
       else {
-        await pool.query(
-          `INSERT INTO users (email,name,password) VALUES ($1,$2,$3)`,
-          [email, name, hashedPassword],
-          (err, results) => {
-            if (err) throw err;
-            res.json(name);
-          }
-        );
+        const sql =
+          "INSERT INTO users(email,name,password) VALUES($1, $2, $3) RETURNING *";
+        const { rows } = await postgre.query(sql, [
+          email,
+          name,
+          hashedPassword,
+        ]);
+        res.json({ name: name });
       }
     } catch (err) {
       res.json({ error: err });
