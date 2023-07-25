@@ -82,6 +82,7 @@ const contract = {
       const { contractStage } = req.params.stage;
       const contStage = getValueForStage(contractStage);
       if (contStage !== null) {
+        console.log(contStage);
         const { rows } = db.query(
           `SELECT * FROM contracts where contractStage = $1`,
           [contStage]
