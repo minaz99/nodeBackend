@@ -79,7 +79,7 @@ const contract = {
       if (rowCount > 0) res.status(200).json("Got it");
       else res.status(404).json("Not found");
     } catch (err) {
-      res.status(404).json({ error: err.msg });
+      res.status(404).json("error here");
     }
   },
 };
