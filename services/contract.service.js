@@ -64,7 +64,7 @@ const contract = {
           comments,
         ]
       );
-      res.json({ contract: result.rows[0] });
+      res.status(200).json({ contract: result.rows[0] });
     } catch (err) {
       res.json({ error: err.msg });
     }
