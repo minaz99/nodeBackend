@@ -71,8 +71,8 @@ const contract = {
       res.json({ error: err.msg });
     }
   },
-  getContractsByStage: async (req, res) => {
-    try {
+  getContractsByStage: (req, res) => {
+    /*try {
       const { stage } = req.body;
       const result = await db.query(
         `SELECT * FROM contracts WHERE ContractStage = $1`,
@@ -82,7 +82,8 @@ const contract = {
       else res.status(404).json("kousai");
     } catch (err) {
       res.status(404).json("error here");
-    }
+    }*/
+    res.json("hi there");
   },
 };
 
