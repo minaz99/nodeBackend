@@ -74,8 +74,7 @@ const contract = {
   getContractsByContractStage: async (req, res) => {
     try {
       const { rowCount } = await db.query(
-        `SELECT * FROM contracts where ContractStage = $1`,
-        [req.query.stage]
+        `SELECT * FROM contracts where ContractStage = Signed`
       );
       if (rowCount > 0) res.status(200).json("Got it");
       else res.status(404).json("Not found");
