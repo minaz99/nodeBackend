@@ -83,7 +83,7 @@ const contract = {
     } catch (err) {
       res.status(404).json("error here");
     }*/
-    res.json("hi there");
+    res.status(200).json("hi there");
   },
 };
 
