@@ -78,7 +78,7 @@ const contract = {
         `SELECT * FROM contracts where contractStage = $1`,
         [contractStage]
       );
-      res.status(200).json({ contracts: rows[0] });
+      res.status(200).json(contractStage);
     } catch (err) {
       res.status(404).json({ error: err.msg });
     }
