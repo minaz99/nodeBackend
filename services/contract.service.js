@@ -72,7 +72,7 @@ const contract = {
     }
   },
   contractsHello: (req, res) => {
-    res.json("yes sirsky");
+    res.status(200).json("yes sirsky");
   },
 };
 
