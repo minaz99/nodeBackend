@@ -75,7 +75,7 @@ const contract = {
     try {
       const result = await db.query(
         `SELECT * FROM contracts where ContractStage = $1`,
-        [req.params.stage]
+        [req.query.stage]
       );
       res.status(200).json({ filtered: result.rowCount });
     } catch (err) {
