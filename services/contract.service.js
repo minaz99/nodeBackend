@@ -71,8 +71,12 @@ const contract = {
       res.json({ error: err.msg });
     }
   },
-  contractsHello: (req, res) => {
-    res.status(200).json("yes sirsky");
+  contractsHello: async (req, res) => {
+    try {
+      res.status(404).json("done");
+    } catch (err) {
+      res.json("error");
+    }
   },
 };
 
