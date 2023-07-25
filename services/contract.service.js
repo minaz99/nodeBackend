@@ -82,12 +82,11 @@ const contract = {
       const { contractStage } = req.params.stage;
       const contStage = getValueForStage(contractStage);
       if (contStage !== null) {
-        console.log(contStage);
         const { rows } = db.query(
           `SELECT * FROM contracts where contractStage = $1`,
           [contStage]
         );
-        res.status(200).json({ contracts: rows });
+        res.status(200).json({ stage: contStage });
       } else res.status(404).json("Incorrect contract stage");
     } catch (err) {
       res.status(404).json({ error: err.msg });
