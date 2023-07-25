@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const db = require("../dbConfig");
-const ContractStage = require("../Classes/Contract/ContractStage");
+//const ContractStage = require("../Classes/Contract/ContractStage");
 
 const contract = {
   getAllContracts: async (req, res) => {
@@ -73,10 +73,10 @@ const contract = {
   },
   getContractsByContractStage: async (req, res) => {
     try {
-      /*const { rowCount } = await db.query(
+      const result = await db.query(
         `SELECT * FROM contracts WHERE ContractStage = Signed`
-      );*/
-      res.status(200).json("Got it");
+      );
+      res.json("Got it");
     } catch (err) {
       res.status(404).json("error here");
     }
