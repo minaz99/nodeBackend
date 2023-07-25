@@ -73,10 +73,10 @@ const contract = {
   },
   getContractsByContractStage: async (req, res) => {
     try {
-      const { contractStage } = req.params.stage;
+      const stage = req.params.stage;
       const { rows } = db.query(
         `SELECT * FROM contracts where contractStage = $1`,
-        [contractStage]
+        [stage]
       );
       res.status(200).json({ contracts: rows });
     } catch (err) {
