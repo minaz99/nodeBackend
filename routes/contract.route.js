@@ -14,3 +14,5 @@ const contractService = require("../services/contract.service");
 router.get("/", authToken, contractService.getAllContracts);
 router.get("/:id", authToken, contractService.getContractByID);
 router.post("/", authToken, contractService.createContract);
+
+module.exports = router;
