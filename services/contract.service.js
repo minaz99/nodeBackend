@@ -88,7 +88,7 @@ const contract = {
         `SELECT * FROM contracts WHERE brideName LIKE $1`,
         [`${req.params.bride}%`]
       );*/
-      res.json(200).json({ contracts: result.rows });
+      res.json(200).json({ contracts: req.params.bride });
     } catch (err) {
       res.json({ error: err });
     }
