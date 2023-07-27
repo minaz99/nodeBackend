@@ -93,44 +93,44 @@ const contract = {
       res.json({ error: err.msg });
     }
   },
-  addCommentToContract: async (req, res) => {
+
+  updateContractDetails: async (req, res) => {
     try {
-      const { comment } = req.body;
+      const {
+        eventLocation,
+        eventDate,
+        photographer,
+        video,
+        contractStage,
+        comments,
+      } = req.body;
       const result = await db.query(`SELECT * FROM contracts where id = $1`, [
         req.params.id,
       ]);
-      const commentConcated = result.rows[0].comments + ". " + comment;
+      const newComments =
+        comments !== null ? result.rows[0].comments + ". " + comment : comments;
+      const newEventLocation =
+        eventLocation !== null ? eventLocation : result.rows[0].eventLocation;
+      const nenwEventDate =
+        eventDate !== null ? eventDate : result.rows[0].eventDate;
+      const newPhotographer =
+        photographer !== null ? photographer : result.rows[0].photographer;
+      const newVideo = video !== null ? video : result.rows[0].video;
+      const newContractStage =
+        contractStage !== null ? contractStage : result.rows[0].contractStage;
       const result2 = await db.query(
-        `UPDATE contracts SET comments = $1 WHERE id = $2`,
-        [commentConcated, req.params.id]
+        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, WHERE id = $2`,
+        [
+          newEventLocation,
+          nenwEventDate,
+          newPhotographer,
+          newVideo,
+          newContractStage,
+          newComments,
+          req.params.id,
+        ]
       );
-      res.json(`Contract comments has been updated`);
-    } catch (err) {
-      res.json({ error: err.msg });
-    }
-  },
-  setPhotographer: async (req, res) => {
-    try {
-      const { photographer } = req.body;
-      const commentConcated = result.rows[0].comments + ". " + comment;
-      const result2 = await db.query(
-        `UPDATE contracts SET photographer = $1 WHERE id = $2`,
-        [photographer, req.params.id]
-      );
-      res.json(`Contract photographer has been updated`);
-    } catch (err) {
-      res.json({ error: err.msg });
-    }
-  },
-  setVideo: async (req, res) => {
-    try {
-      const { video } = req.body;
-      const commentConcated = result.rows[0].comments + ". " + comment;
-      const result2 = await db.query(
-        `UPDATE contracts SET video = $1 WHERE id = $2`,
-        [video, req.params.id]
-      );
-      res.json(`Contract photographer has been updated`);
+      res.json(`Contract has been updated`);
     } catch (err) {
       res.json({ error: err.msg });
     }
