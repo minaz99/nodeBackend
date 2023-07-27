@@ -7,7 +7,7 @@ const db = require("../dbConfig");
 const trial = {
   contractsHello: async (req, res) => {
     try {
-      res.status(200).json(res.params.filter);
+      res.status(200).json(req.params.filter);
     } catch (err) {
       res.json("error");
     }
