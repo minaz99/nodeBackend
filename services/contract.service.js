@@ -133,7 +133,7 @@ const contract = {
           req.params.id,
         ]
       );
-      res.json(`Contract has been updated`);
+      res.status(200).json(`Contract has been updated`);
     } catch (err) {
       res.json({ error: err.msg });
     }
