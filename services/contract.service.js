@@ -98,7 +98,7 @@ const contract = {
       const { comment } = req.body;
       const result = await db.query(
         `UPDATE contracts SET comments = $1 WHERE id = $2`,
-        [comment, req.body.id]
+        [comment, req.params.id]
       );
       res.json(`Contract comments has been updated`);
     } catch (err) {
