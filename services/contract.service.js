@@ -96,9 +96,13 @@ const contract = {
   addCommentToContract: async (req, res) => {
     try {
       const { comment } = req.body;
-      const result = await db.query(
+      const result = await db.query(`SELECT * FROM contracts where id = $1`, [
+        req.params.id,
+      ]);
+      const commentConcated = result.rows[0].comments + ". " + comment;
+      const result2 = await db.query(
         `UPDATE contracts SET comments = $1 WHERE id = $2`,
-        [comment, req.params.id]
+        [commentConcated, req.params.id]
       );
       res.json(`Contract comments has been updated`);
     } catch (err) {
