@@ -11,6 +11,7 @@ router.get(
   contractService.getContractsByStage
 );
 router.get("/search/:bride", authToken, contractService.getContractByBride);
-router.post("/", authToken, contractService.createContract);
+router.patch("/contract/:id", authToken, contractService.createContract);
+router.pa;
 
 module.exports = router;
