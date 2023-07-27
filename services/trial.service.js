@@ -7,7 +7,11 @@ const db = require("../dbConfig");
 const trial = {
   contractsHello: async (req, res) => {
     try {
-      res.status(200).json(req.query.filter);
+      const result = await db.query(
+        `SELECT * FROM contracts where contractStage=$1`,
+        [req.query.stage]
+      );
+      res.status(200).json({ contracts: result.rows });
     } catch (err) {
       res.json("error");
     }
