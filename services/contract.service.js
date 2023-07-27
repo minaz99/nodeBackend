@@ -122,7 +122,7 @@ const contract = {
         ? contractStage
         : result.rows[0].contractStage;
       const result2 = await db.query(
-        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, WHERE id = $2`,
+        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, WHERE id = $7`,
         [
           newEventLocation,
           nenwEventDate,
