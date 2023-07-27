@@ -109,6 +109,32 @@ const contract = {
       res.json({ error: err.msg });
     }
   },
+  setPhotographer: async (req, res) => {
+    try {
+      const { photographer } = req.body;
+      const commentConcated = result.rows[0].comments + ". " + comment;
+      const result2 = await db.query(
+        `UPDATE contracts SET photographer = $1 WHERE id = $2`,
+        [photographer, req.params.id]
+      );
+      res.json(`Contract photographer has been updated`);
+    } catch (err) {
+      res.json({ error: err.msg });
+    }
+  },
+  setVideo: async (req, res) => {
+    try {
+      const { video } = req.body;
+      const commentConcated = result.rows[0].comments + ". " + comment;
+      const result2 = await db.query(
+        `UPDATE contracts SET video = $1 WHERE id = $2`,
+        [video, req.params.id]
+      );
+      res.json(`Contract photographer has been updated`);
+    } catch (err) {
+      res.json({ error: err.msg });
+    }
+  },
 };
 
 module.exports = contract;
