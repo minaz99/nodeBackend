@@ -82,6 +82,17 @@ const contract = {
       res.json("error");
     }
   },
+  getContractByBride: async (req, res) => {
+    try {
+      const result = await db.query(
+        `SELEC * FROM contracts WHERE brideName LIKE %$1`,
+        [req.params.bride]
+      );
+      res.json(200).json({ contracts: result.rows });
+    } catch (err) {
+      res.json({ error: err });
+    }
+  },
 };
 
 module.exports = contract;
