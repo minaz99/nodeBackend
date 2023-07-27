@@ -86,7 +86,7 @@ const contract = {
     try {
       const result = await db.query(
         `SELEC * FROM contracts WHERE brideName LIKE $1`,
-        ["%" + req.params.bride]
+        [req.params.bride + "%"]
       );
       res.json(200).json({ contracts: result.rows });
     } catch (err) {
