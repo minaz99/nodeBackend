@@ -12,6 +12,6 @@ router.get(
 );
 router.get("/search/:bride", authToken, contractService.getContractByBride);
 router.post("/", authToken, contractService.createContract);
-router.post("/:id", authToken, contractService.addCommentToContract);
+router.post("/:id", authToken, contractService.updateContractDetails);
 
 module.exports = router;
