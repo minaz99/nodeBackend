@@ -10,7 +10,7 @@ router.get(
   authToken,
   contractService.getContractsByStage
 );
-router.get("/search/:brideName", authToken, contractService.getContractByBride);
+router.get("/search/:bride", authToken, contractService.getContractByBride);
 router.post("/", authToken, contractService.createContract);
 
 module.exports = router;
