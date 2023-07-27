@@ -16,7 +16,7 @@ const contract = {
   getContractByID: async (req, res) => {
     try {
       const { rows } = await db.query(`SELECT * FROM contracts where id = $1`, [
-        req.params.id,
+        req.params[`id`],
       ]);
       res.json({ contract: rows[0] });
     } catch (err) {

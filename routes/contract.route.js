@@ -4,7 +4,7 @@ const authToken = require("../authToken");
 
 const contractService = require("../services/contract.service");
 router.get("/", authToken, contractService.getAllContracts);
-router.get("/", authToken, contractService.getContractByID);
+router.get("/:id", authToken, contractService.getContractByID);
 router.get("/filter", authToken, contractService.getContractsByStage);
 router.post("/", authToken, contractService.createContract);
 
