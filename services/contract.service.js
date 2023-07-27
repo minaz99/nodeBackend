@@ -100,7 +100,7 @@ const contract = {
         `UPDATE contracts SET comments = $1 WHERE id = $2`,
         [comment, req.body.id]
       );
-      res.json(`${req.body.id} and comment is ${comment}`);
+      res.json(`Contract comments has been updated`);
     } catch (err) {
       res.json({ error: err.msg });
     }
