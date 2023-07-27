@@ -108,7 +108,9 @@ const contract = {
         req.params.id,
       ]);
       const newComments =
-        comments !== null ? result.rows[0].comments + ". " + comment : comments;
+        comments !== null
+          ? result.rows[0].comments + ". " + comments
+          : result.rows[0].comments;
       const newEventLocation =
         eventLocation !== null ? eventLocation : result.rows[0].eventLocation;
       const nenwEventDate =
