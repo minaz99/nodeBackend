@@ -82,7 +82,7 @@ const contract = {
       res.json("error");
     }
   },
-  getContractByBride: (req, res) => {
+  getContractByBride: async (req, res) => {
     try {
       /*const result = await db.query(
         `SELECT * FROM contracts WHERE brideName LIKE $1`,
