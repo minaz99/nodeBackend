@@ -90,7 +90,19 @@ const contract = {
       );
       res.json({ contracts: result.rows });
     } catch (err) {
-      res.json({ error: err });
+      res.json({ error: err.msg });
+    }
+  },
+  addCommentToContract: async (req, res) => {
+    try {
+      const { comment } = req.body;
+      const result = await db.query(
+        `UPDATE contracts SET comments = $1 WHERE id = $2`,
+        [comment, req.body.id]
+      );
+      res.json("New Comment Added");
+    } catch (err) {
+      res.json({ error: err.msg });
     }
   },
 };
