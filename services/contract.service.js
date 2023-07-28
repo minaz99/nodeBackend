@@ -125,7 +125,7 @@ const contract = {
         `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6 WHERE id = $7`,
         [
           newEventLocation,
-          nenwEventDate,
+          newEventDate,
           newPhotographer,
           newVideo,
           newContractStage,
