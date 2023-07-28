@@ -16,6 +16,7 @@ router.get(
   authToken,
   contractService.getContractsByMultipleFilters
 );
+router.get("/filter/calender", authToken, contractService.getContractsPerMonth);
 router.post("/", authToken, contractService.createContract);
 router.post("/:id", authToken, contractService.updateContractDetails);
 
