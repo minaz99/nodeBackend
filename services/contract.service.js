@@ -71,12 +71,25 @@ const contract = {
       res.json({ error: err.msg });
     }
   },
-  getContractsByStage: async (req, res) => {
+  getContractsByCriteria: async (req, res) => {
     try {
-      const result = await db.query(
-        `SELECT * FROM contracts where contractStage=$1`,
-        [req.query.stage]
-      );
+      let result;
+      const criteria = req.query.stage
+        ? req.query.stage
+        : req.query.photographer
+        ? req.query.photographer
+        : req.query.video;
+      const columnCriteria = req.query.stage
+        ? "contractStage"
+        : req.query.photographer
+        ? "photographer"
+        : "video";
+      if (req.query.stage)
+        result = await db.query(
+          `SELECT * FROM contracts where ${columnCriteria}=$1`,
+          [criteria]
+        );
+
       res.status(200).json({ contracts: result.rows });
     } catch (err) {
       res.json("error");
