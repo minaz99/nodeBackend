@@ -73,7 +73,6 @@ const contract = {
   },
   getContractsByCriteria: async (req, res) => {
     try {
-      let result;
       const criteria = req.query.stage
         ? req.query.stage
         : req.query.photographer
@@ -84,17 +83,13 @@ const contract = {
         : req.query.photographer
         ? "photographer"
         : "video";
-      if (req.query.stage)
-        result = await db.query(
-          `SELECT * FROM contracts where ${columnCriteria}=$1`,
-          [criteria]
-        );
-
-      res
-        .status(200)
-        .json(`criteria: ${criteria} , columnCriteria: ${columnCriteria}`);
+      const result = await db.query(
+        `SELECT * FROM contracts where ${columnCriteria}=$1`,
+        [criteria]
+      );
+      res.json({ contracts: result.rows });
     } catch (err) {
-      res.json("error");
+      res.status(404).json("error");
     }
   },
   getContractByBride: async (req, res) => {
