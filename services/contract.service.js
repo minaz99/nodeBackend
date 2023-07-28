@@ -133,9 +133,7 @@ const contract = {
           req.params.id,
         ]
       );*/
-      res.json(
-        `eventLocation: ${newEventLocation}, eventDate: ${newEventDate}, photographer: ${newPhotographer}, video: ${newVideo}, contractStage: ${newContractStage}, comments: ${newComments} `
-      );
+      res.json({ contract: result.rows });
     } catch (err) {
       res.json({ error: err.msg });
     }
