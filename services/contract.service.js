@@ -151,11 +151,12 @@ const contract = {
   getContractsByMultipleFilters: async (req, res) => {
     try {
       const { brideName, eventType, eventLocation, contractStage } = req.body;
-      let countOfFilters = 0;
-      Object.values(req.body).every((property) => {
-        if (property !== undefined) countOfFilters = countOfFilters + 1;
+      res.json({
+        brideName: brideName,
+        eventType: eventType,
+        eventLocation: eventLocation,
+        contractStage: contractStage,
       });
-      res.json(countOfFilters);
     } catch (err) {
       res.status(404).json({ error: err.msg });
     }
