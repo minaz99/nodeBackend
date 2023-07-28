@@ -121,7 +121,7 @@ const contract = {
       const newContractStage = contractStage
         ? contractStage
         : result.rows[0].contractstage;
-      /* const result2 = await db.query(
+      const result2 = await db.query(
         `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6 WHERE id = $7`,
         [
           newEventLocation,
@@ -132,10 +132,8 @@ const contract = {
           newComments,
           req.params.id,
         ]
-      );*/
-      res.json(
-        `eventLocation: ${newEventLocation}, eventDate: ${newEventDate}, photographer: ${newPhotographer}, video: ${newVideo}, contractStage: ${newContractStage}, comments: ${newComments} `
       );
+      res.json(`Contract has been updated`);
     } catch (err) {
       res.json({ error: err.msg });
     }
