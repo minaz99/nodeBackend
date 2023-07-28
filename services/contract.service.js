@@ -160,22 +160,22 @@ const contract = {
         data.push(brideName);
       }
       if (eventType) {
-        query += ` and eventType = $${paramterIndex}`;
+        query += ` and eventType=$${paramterIndex}`;
         paramterIndex += 1;
         data.push(eventType);
       }
       if (eventLocation) {
-        query += ` and eventLocation = $${paramterIndex}`;
+        query += ` and eventLocation=$${paramterIndex}`;
         paramterIndex += 1;
         data.push(eventLocation);
       }
       if (contractStage) {
-        query += ` and contractStage = $${paramterIndex}`;
+        query += ` and contractStage=$${paramterIndex}`;
         paramterIndex += 1;
         data.push(contractStage);
       }
       const result = await db.query(query, data);
-      res.json({ query: query, data: data });
+      res.json({ contracts: result.rows });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
