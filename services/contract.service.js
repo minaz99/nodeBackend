@@ -204,9 +204,8 @@ const contract = {
         ].contracts.push(contract)
       );
       res.json({ Days: contractsMonthDetails });*/
-      for (let r of result.rows) {
-        console.log(r["eventDate"]);
-      }
+
+      console.log(result.rows);
       res.json("done");
     } catch (err) {
       res.status(400).json({ error: err.msg });
