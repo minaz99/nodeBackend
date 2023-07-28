@@ -113,14 +113,14 @@ const contract = {
       const newEventLocation = eventLocation
         ? eventLocation
         : result.rows[0].eventLocation;
-      const newEventDate = eventDate ? eventDate : result.rows[0].eventDate;
+      const newEventDate = eventDate ? eventDate : result.rows[0].eventdate;
       const newPhotographer = photographer
         ? photographer
         : result.rows[0].photographer;
       const newVideo = video ? video : result.rows[0].video;
       const newContractStage = contractStage
         ? contractStage
-        : result.rows[0].contractStage;
+        : result.rows[0].contractstage;
       /* const result2 = await db.query(
         `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6 WHERE id = $7`,
         [
@@ -133,7 +133,9 @@ const contract = {
           req.params.id,
         ]
       );*/
-      res.json({ contract: result.rows });
+      res.json(
+        `eventLocation: ${newEventLocation}, eventDate: ${newEventDate}, photographer: ${newPhotographer}, video: ${newVideo}, contractStage: ${newContractStage}, comments: ${newComments} `
+      );
     } catch (err) {
       res.json({ error: err.msg });
     }
