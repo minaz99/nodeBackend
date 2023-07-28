@@ -198,7 +198,7 @@ const contract = {
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
         [req.query.month, req.query.year]
       );
-      result.rows.forEach((c) => console.log(c.eventDate));
+      result.rows.forEach((c) => console.log(c[0].eventDate));
       /*result.rows.forEach((contract) =>
         contractsMonthDetails[
           new Date(contract.eventDate).getDate() - 1
