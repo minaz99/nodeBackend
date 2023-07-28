@@ -153,7 +153,7 @@ const contract = {
       const { brideName, eventType, eventLocation, contractStage } = req.body;
       let countOfFilters = 0;
       Object.values(req.body).every((property) => {
-        if (property) countOfFilters = countOfFilters + 1;
+        if (property !== undefined) countOfFilters = countOfFilters + 1;
       });
       res.json(countOfFilters);
     } catch (err) {
