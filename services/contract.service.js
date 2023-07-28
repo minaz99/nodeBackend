@@ -198,15 +198,12 @@ const contract = {
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
         [req.query.month, req.query.year]
       );
-      /*result.rows.forEach((contract) =>
+      result.rows.forEach((contract) =>
         contractsMonthDetails[
-          new Date(contracts.eventDate).getDate() - 1
+          new Date(contract.eventDate).getDate() - 1
         ].contracts.push(contract)
-      );*/
-      res.status(200).json(
-        /*{ Days: contractsMonthDetails }*/
-        { date: result.rows[0].eventDate }
       );
+      res.json({ Days: contractsMonthDetails });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
