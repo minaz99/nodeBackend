@@ -175,7 +175,7 @@ const contract = {
         data.push(contractStage);
       }
       const result = await db.query(query, data);
-      res.json({ contracts: result.rows });
+      res.json({ query: query, data: data });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
