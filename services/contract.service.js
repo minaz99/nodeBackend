@@ -90,7 +90,9 @@ const contract = {
           [criteria]
         );
 
-      res.status(200).json({ contracts: result.rows });
+      res
+        .status(200)
+        .json(`criteria: ${criteria} and columnCriteria: ${columnCriteria}`);
     } catch (err) {
       res.json("error");
     }
