@@ -107,14 +107,13 @@ const contract = {
       const result = await db.query(`SELECT * FROM contracts where id = $1`, [
         req.params.id,
       ]);
-      const newComments =
-        comments !== null
-          ? result.rows[0].comments + ". " + comments
-          : result.rows[0].comments;
+      const newComments = comments
+        ? result.rows[0].comments + ". " + comments
+        : result.rows[0].comments;
       const newEventLocation = eventLocation
         ? eventLocation
         : result.rows[0].eventLocation;
-      const nenwEventDate = eventDate ? eventDate : result.rows[0].eventDate;
+      const newEventDate = eventDate ? eventDate : result.rows[0].eventDate;
       const newPhotographer = photographer
         ? photographer
         : result.rows[0].photographer;
@@ -135,7 +134,7 @@ const contract = {
         ]
       );*/
       res.json(
-        `eventLocation: ${newEventLocation}, eventDate: ${nenwEventDate}, photographer: ${newPhotographer}, video: ${newVideo}, contractStage: ${newContractStage}, comments: ${newComments} `
+        `eventLocation: ${newEventLocation}, eventDate: ${newEventDate}, photographer: ${newPhotographer}, video: ${newVideo}, contractStage: ${newContractStage}, comments: ${newComments} `
       );
     } catch (err) {
       res.json({ error: err.msg });
