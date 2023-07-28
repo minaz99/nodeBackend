@@ -4,6 +4,10 @@ app.use(express.json());
 const db = require("../dbConfig");
 //const ContractStage = require("../Classes/Contract/ContractStage");
 
+function getDaysInMonth(year, month) {
+  return new Date(year, month, 0).getDate();
+}
+
 const contract = {
   getAllContracts: async (req, res) => {
     try {
@@ -179,6 +183,27 @@ const contract = {
       }
       const result = await db.query(query, data);
       res.json({ contracts: result.rows });
+    } catch (err) {
+      res.status(400).json({ error: err.msg });
+    }
+  },
+  getContractsPerMonth: async (req, res) => {
+    try {
+      const contractsMonthDetails = [];
+      let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
+      for (let i = 1; i <= daysInMonth; i++) {
+        contractsMonthDetails.push({ i, contracts: [] });
+      }
+      const result = await db.query(
+        `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate) =$2 `,
+        [req.query.month, req.query.year]
+      );
+      result.rows.forEach((contract) =>
+        contractsMonthDetails[
+          new Date(contracts.eventDate).getDate() - 1
+        ].contracts.push(contract)
+      );
+      res.json({ Days: contractsMonthDetails });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
