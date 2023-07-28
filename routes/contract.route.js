@@ -8,7 +8,7 @@ router.get("/:id", authToken, contractService.getContractByID);
 router.get(
   "/filter/filterType",
   authToken,
-  contractService.getContractsByStage
+  contractService.getContractsByCriteria
 );
 router.get("/search/:bride", authToken, contractService.getContractByBride);
 router.post("/", authToken, contractService.createContract);
