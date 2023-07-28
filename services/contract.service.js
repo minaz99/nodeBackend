@@ -148,6 +148,18 @@ const contract = {
       res.json({ error: err.msg });
     }
   },
+  getContractsByMultipleFilters: async (req, res) => {
+    try {
+      const { brideName, eventType, eventLocation, contractStage } = req.body;
+      let countOfFilters = 0;
+      Object.values(req.body).every((property) => {
+        if (property) countOfFilters += 1;
+      });
+      res.json(countOfFilters);
+    } catch (err) {
+      res.status(404).json({ error: err.msg });
+    }
+  },
 };
 
 module.exports = contract;

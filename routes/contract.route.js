@@ -11,6 +11,11 @@ router.get(
   contractService.getContractsByCriteria
 );
 router.get("/search/:bride", authToken, contractService.getContractByBride);
+router.get(
+  "/filter/multipleFilters",
+  authToken,
+  contractService.getContractsByMultipleFilters
+);
 router.post("/", authToken, contractService.createContract);
 router.post("/:id", authToken, contractService.updateContractDetails);
 
