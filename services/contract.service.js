@@ -203,7 +203,7 @@ const contract = {
           new Date(contracts.eventDate).getDate() - 1
         ].contracts.push(contract)
       );*/
-      res.json(
+      res.status(200).json(
         /*{ Days: contractsMonthDetails }*/
         { date: result.rows[0].eventDate }
       );
