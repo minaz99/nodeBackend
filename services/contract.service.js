@@ -10,7 +10,7 @@ const contract = {
       const { rows } = await db.query(`SELECT * FROM contracts`);
       res.json({ contracts: rows });
     } catch (err) {
-      res.json({ error: err.msg });
+      res.status(400).json({ error: err.msg });
     }
   },
   getContractByID: async (req, res) => {
@@ -20,7 +20,7 @@ const contract = {
       ]);
       res.json({ contract: rows[0] });
     } catch (err) {
-      res.json({ error: err.msg });
+      res.status(400).json({ error: err.msg });
     }
   },
   createContract: async (req, res) => {
@@ -68,7 +68,7 @@ const contract = {
       );
       res.status(200).json({ contract: result.rows[0] });
     } catch (err) {
-      res.json({ error: err.msg });
+      res.status(400).json({ error: err.msg });
     }
   },
   getContractsByCriteria: async (req, res) => {
@@ -89,7 +89,7 @@ const contract = {
       );
       res.json({ contracts: result.rows });
     } catch (err) {
-      res.status(404).json("error");
+      res.status(400).json("error");
     }
   },
   getContractByBride: async (req, res) => {
@@ -100,7 +100,7 @@ const contract = {
       );
       res.json({ contracts: result.rows });
     } catch (err) {
-      res.json({ error: err.msg });
+      res.status(400).json({ error: err.msg });
     }
   },
 
@@ -145,20 +145,39 @@ const contract = {
       );
       res.json(`Contract has been updated`);
     } catch (err) {
-      res.json({ error: err.msg });
+      res.status(400).json({ error: err.msg });
     }
   },
   getContractsByMultipleFilters: async (req, res) => {
     try {
       const { brideName, eventType, eventLocation, contractStage } = req.body;
-      res.json({
-        brideName: brideName,
-        eventType: eventType,
-        eventLocation: eventLocation,
-        contractStage: contractStage,
-      });
+      let query = `SELECT * FROM contracts where `;
+      let paramterIndex = 1;
+      let data = [];
+      if (brideName) {
+        query += `brideName=$${paramterIndex}`;
+        paramterIndex += 1;
+        data.push(brideName);
+      }
+      if (eventType) {
+        query += ` and eventType = $${paramterIndex}`;
+        paramterIndex += 1;
+        data.push(eventType);
+      }
+      if (eventLocation) {
+        query += ` and eventLocation = $${paramterIndex}`;
+        paramterIndex += 1;
+        data.push(eventLocation);
+      }
+      if (contractStage) {
+        query += ` and contractStage = $${paramterIndex}`;
+        paramterIndex += 1;
+        data.push(contractStage);
+      }
+      const result = await db.query(query, data);
+      res.json({ contracts: result.rows });
     } catch (err) {
-      res.status(404).json({ error: err.msg });
+      res.status(400).json({ error: err.msg });
     }
   },
 };
