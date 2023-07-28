@@ -205,7 +205,7 @@ const contract = {
       );*/
       res.json(
         /*{ Days: contractsMonthDetails }*/
-        result.rows[0].eventDate
+        result.rows[0]
       );
     } catch (err) {
       res.status(400).json({ error: err.msg });
