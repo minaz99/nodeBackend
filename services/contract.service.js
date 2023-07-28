@@ -205,7 +205,7 @@ const contract = {
       );
       res.json({ Days: contractsMonthDetails });*/
       for (let r of result.rows) {
-        console.log(r.eventDate);
+        console.log(r);
       }
       res.json("done");
     } catch (err) {
