@@ -204,9 +204,8 @@ const contract = {
         ].contracts.push(contract)
       );*/
       res.json(
-        /*{ Days: contractsMonthDetails }*/ new Date(
-          result.rows[0].eventDate
-        ).getDate()
+        /*{ Days: contractsMonthDetails }*/
+        result.rows[0].eventDate
       );
     } catch (err) {
       res.status(400).json({ error: err.msg });
