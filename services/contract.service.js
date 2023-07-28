@@ -111,15 +111,17 @@ const contract = {
         comments !== null
           ? result.rows[0].comments + ". " + comments
           : result.rows[0].comments;
-      const newEventLocation =
-        eventLocation !== null ? eventLocation : result.rows[0].eventLocation;
-      const nenwEventDate =
-        eventDate !== null ? eventDate : result.rows[0].eventDate;
-      const newPhotographer =
-        photographer !== null ? photographer : result.rows[0].photographer;
-      const newVideo = video !== null ? video : result.rows[0].video;
-      const newContractStage =
-        contractStage !== null ? contractStage : result.rows[0].contractStage;
+      const newEventLocation = eventLocation
+        ? eventLocation
+        : result.rows[0].eventLocation;
+      const nenwEventDate = eventDate ? eventDate : result.rows[0].eventDate;
+      const newPhotographer = photographer
+        ? photographer
+        : result.rows[0].photographer;
+      const newVideo = video ? video : result.rows[0].video;
+      const newContractStage = contractStage
+        ? contractStage
+        : result.rows[0].contractStage;
       /* const result2 = await db.query(
         `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6 WHERE id = $7`,
         [
