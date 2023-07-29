@@ -41,27 +41,26 @@ const component = {
       let paramIndex = 1;
       let query = `UPDATE components `;
       if (componentType) {
-        query += `SET componentType = ${paramIndex}`;
+        query += `SET componentType = $${paramIndex}`;
         paramIndex += 1;
         editableProperties.push(componentType);
       }
       if (name) {
         if (paramIndex > 1) query += " and ";
-        query += `SET name = ${paramIndex}`;
+        query += `SET name = $${paramIndex}`;
         paramIndex += 1;
         editableProperties.push(name);
       }
       if (price) {
         if (paramIndex > 1) query += " and ";
-        query += `SET price = ${paramIndex}`;
+        query += `SET price = $${paramIndex}`;
         paramIndex += 1;
         editableProperties.push(price);
       }
-      query += ` where id=${paramIndex}`;
+      query += ` where id=$${paramIndex}`;
       editableProperties.push(req.params[`id`]);
-      res.json({ query: query, editableProperties: editableProperties });
-      //const result = await db.query(query, [editableProperties]);
-      //res.json({ Component: result.rows[0] });
+      const result = await db.query(query, [editableProperties]);
+      res.json({ Component: result.rows[0] });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
