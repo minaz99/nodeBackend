@@ -26,7 +26,7 @@ const component = {
     try {
       const { componentType, name, price } = req.body;
       const result = await db.query(
-        `INSERT INTO contracts(componentType,name,price) VALUES($1,$2,$3)`,
+        `INSERT INTO components(componentType,name,price) VALUES($1,$2,$3)`,
         [componentType, name, price]
       );
       res.json({ component: result.rows[0] });
