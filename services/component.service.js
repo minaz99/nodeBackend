@@ -57,7 +57,7 @@ const component = {
         paramIndex += 1;
         editableProperties.push(price);
       }
-      query += `where id = ${paramIndex}`;
+      query += ` where id = ${paramIndex}`;
       editableProperties.push(req.params.id);
       const result = await db.query(query, [editableProperties]);
       res.json({ Component: result.rows[0] });
