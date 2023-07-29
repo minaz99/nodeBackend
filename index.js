@@ -26,9 +26,11 @@ const userRouter = require("./routes/user.route");
 const checkRouter = require("./routes/chec.route");
 const contractRouter = require("./routes/contract.route");
 const trialRouter = require("./routes/trial.route");
+const componentRouter = require("./routes/component.route");
 app.use("/user", userRouter);
 app.use("/contracts", contractRouter);
 app.use("/trial", trialRouter);
+app.use("/components", componentRouter);
 app.listen(process.env.PORT, () =>
   console.log("Server is running on port 5000")
 );
