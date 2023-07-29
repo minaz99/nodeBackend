@@ -60,7 +60,7 @@ const component = {
       query += ` where id = $${paramIndex}`;
       editableProperties.push(req.params.id);
       //res.json({ query: query, editableProperties: editableProperties });
-      const result = await db.query(query, [editableProperties]);
+      const result = await db.query(query, editableProperties);
       res.json({ component: result.rows });
     } catch (err) {
       res.status(400).json({ error: err.msg });
