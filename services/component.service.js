@@ -39,7 +39,7 @@ const component = {
       let editableProperties = [];
       const { componentType, name, price } = req.body;
       let paramIndex = 1;
-      const query = `UPDATE contracts `;
+      const query = `UPDATE components `;
       if (componentType) {
         query += `SET componentType = ${paramIndex}`;
         paramIndex += 1;
