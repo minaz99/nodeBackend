@@ -70,7 +70,7 @@ const component = {
     try {
       const result = await db.query(
         `SELECT * FROM components where componentType=$1`,
-        [req.query.type]
+        [req.params.type]
       );
       res.json({ components: result.rows });
     } catch (err) {
