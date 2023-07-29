@@ -57,8 +57,8 @@ const component = {
         paramIndex += 1;
         editableProperties.push(price);
       }
-      query += ` where id = ${paramIndex}`;
-      editableProperties.push(req.params.id);
+      query += ` where id=${paramIndex}`;
+      editableProperties.push(req.params[`id`]);
       const result = await db.query(query, [editableProperties]);
       res.json({ Component: result.rows[0] });
     } catch (err) {
@@ -68,7 +68,7 @@ const component = {
   getComponentsByType: async (req, res) => {
     try {
       const result = await db.query(
-        `SELECT * FROM components where componentType = $1`,
+        `SELECT * FROM components where componentType=$1`,
         [req.query.type]
       );
       res.json({ components: result.rows });
