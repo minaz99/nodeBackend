@@ -3,6 +3,7 @@ const router = express.Router();
 const authToken = require("../authToken");
 
 const contractService = require("../services/contract.service");
+const paymentService = require("../services/payment.service");
 router.get("/", authToken, contractService.getAllContracts);
 router.get("/:id", authToken, contractService.getContractByID);
 router.get(
@@ -17,7 +18,13 @@ router.get(
   contractService.getContractsByMultipleFilters
 );
 router.get("/filter/calender", authToken, contractService.getContractsPerMonth);
+router.get(
+  "/:id/payments",
+  authToken,
+  paymentService.getPaymentsInfoForContract
+);
 router.post("/", authToken, contractService.createContract);
 router.post("/:id", authToken, contractService.updateContractDetails);
+router.post("/:id/payments", authToken, paymentService.makePayment);
 
 module.exports = router;
