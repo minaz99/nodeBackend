@@ -23,6 +23,11 @@ router.get(
   authToken,
   paymentService.getPaymentsInfoForContract
 );
+router.get(
+  "/tableHeaderFilters",
+  authToken,
+  contractService.getTableHeaderFilters
+);
 router.post("/", authToken, contractService.createContract);
 router.post("/:id", authToken, contractService.updateContractDetails);
 router.post("/:id/payments", authToken, paymentService.makePayment);
