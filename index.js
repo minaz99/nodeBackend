@@ -3,34 +3,13 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-/*app.get("/", (req, res) => {
-  res.json(msg);
-});
-
-app.get("/contracts", authToken, (req, res) => {
-  res.json("Authorized");
-});*/
-
-/*function authToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-  if (token == null) return res.sendStatus(401);
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-}*/
 
 const userRouter = require("./routes/user.route");
-const checkRouter = require("./routes/chec.route");
 const contractRouter = require("./routes/contract.route");
-const trialRouter = require("./routes/trial.route");
 const componentRouter = require("./routes/component.route");
 const packageRouter = require("./routes/package.route");
 app.use("/user", userRouter);
 app.use("/contracts", contractRouter);
-app.use("/trial", trialRouter);
 app.use("/components", componentRouter);
 app.use("/packages", packageRouter);
 app.listen(process.env.PORT, () =>
