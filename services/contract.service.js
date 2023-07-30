@@ -208,6 +208,37 @@ const contract = {
       res.status(400).json({ error: err.msg });
     }
   },
+  getTableHeaderFilters: async (req, res) => {
+    try {
+      const result = await db.query(`SELECT * FROM contracts`);
+      let eventTypes = [];
+      let eventLocations = [];
+      let contractStatus = [
+        "Done",
+        "In Progress",
+        "On Hold",
+        "Cancelled",
+        "Finished",
+      ];
+      result.rows.forEach((eventType) =>
+        !eventTypes.includes(eventType)
+          ? eventTypes.push(eventType)
+          : console.log("nvm")
+      );
+      result.rows.forEach((eventLocation) =>
+        !eventLocations.includes(eventLocation)
+          ? eventLocations.push(eventLocation)
+          : console.log("nvm")
+      );
+      res.json({
+        types: eventTypes,
+        locations: eventLocations,
+        status: contractStatus,
+      });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };
 
 module.exports = contract;
