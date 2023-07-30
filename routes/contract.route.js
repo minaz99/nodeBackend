@@ -24,7 +24,7 @@ router.get(
   paymentService.getPaymentsInfoForContract
 );
 router.get(
-  "/tableHeaderFilters",
+  "/filter/tableHeaders",
   authToken,
   contractService.getTableHeaderFilters
 );
