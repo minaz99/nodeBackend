@@ -4,11 +4,7 @@ const app = express();
 app.use(express.json());
 const cors = require("cors");
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
 
 const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
