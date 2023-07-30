@@ -220,14 +220,14 @@ const contract = {
         "Cancelled",
         "Finished",
       ];
-      result.rows.forEach((eventType) =>
-        !eventTypes.includes(eventType)
-          ? eventTypes.push(eventType)
+      result.rows.forEach((contract) =>
+        !eventTypes.includes(contract.eventtype)
+          ? eventTypes.push(contract.eventtype)
           : console.log("nvm")
       );
-      result.rows.forEach((eventLocation) =>
-        !eventLocations.includes(eventLocation)
-          ? eventLocations.push(eventLocation)
+      result.rows.forEach((contract) =>
+        !eventLocations.includes(contract.eventlocation)
+          ? eventLocations.push(contract.eventlocation)
           : console.log("nvm")
       );
       res.json({
