@@ -14,10 +14,9 @@ const package = {
   },
   getPackageByID: async (req, res) => {
     try {
-      const result = await db.query(
-        `SELECT * FROM packages where id = $1`,
-        req.params.id
-      );
+      const result = await db.query(`SELECT * FROM packages where id = $1`, [
+        req.params.id,
+      ]);
       res.json({ package: result.rows[0] });
     } catch (err) {
       res.status(400).json({ error: err });
@@ -46,10 +45,9 @@ const package = {
       price,
     } = req.body;
     let packageDataToEdit = [];
-    const result1 = await db.query(
-      `SELECT * FROM packages where id = $1`,
-      req.params.id
-    );
+    const result1 = await db.query(`SELECT * FROM packages where id = $1`, [
+      req.params.id,
+    ]);
     name
       ? packageDataToEdit.push(name)
       : packageDataToEdit.push(result1.rows[0].name);
