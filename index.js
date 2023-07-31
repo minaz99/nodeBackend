@@ -8,7 +8,7 @@ app.use(express.json());
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://arnabghosh.me",
+    origin: "https://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
