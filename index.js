@@ -6,7 +6,12 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const cors = require("cors");
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin: "https://arnabghosh.me",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
 /*
 const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
