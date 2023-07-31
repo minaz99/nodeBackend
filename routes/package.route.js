@@ -4,7 +4,12 @@ const authToken = require("../authToken");
 const packageService = require("../services/package.service");
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 router.get("/", authToken, packageService.getPackages);
 router.get("/:id", authToken, packageService.getPackageByID);

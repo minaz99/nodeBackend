@@ -4,7 +4,12 @@ const app = express();
 app.use(express.json());
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
