@@ -6,7 +6,7 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const cors = require("cors");
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 /*
 const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
