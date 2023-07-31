@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const authToken = require("../authToken");
+const cors = require("cors");
 
+app.use(cors());
 const contractService = require("../services/contract.service");
 const paymentService = require("../services/payment.service");
 router.get("/", authToken, contractService.getAllContracts);

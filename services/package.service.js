@@ -2,7 +2,9 @@ const express = require("express");
 const db = require("../dbConfig");
 const app = express();
 app.use(express.json());
+const cors = require("cors");
 
+app.use(cors());
 const package = {
   getPackages: async (req, res) => {
     try {

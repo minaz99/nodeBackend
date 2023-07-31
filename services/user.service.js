@@ -4,6 +4,9 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
 app.use(express.json());
+const cors = require("cors");
+
+app.use(cors());
 const userServices = {
   login: async (req, res) => {
     try {

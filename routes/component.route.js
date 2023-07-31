@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const authToken = require("../authToken");
+const cors = require("cors");
 
+app.use(cors());
 const componentService = require("../services/component.service");
 
 router.get("/", authToken, componentService.getComponents);

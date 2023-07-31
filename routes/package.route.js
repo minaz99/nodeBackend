@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const authToken = require("../authToken");
 const packageService = require("../services/package.service");
+const cors = require("cors");
+
+app.use(cors());
 
 router.get("/", authToken, packageService.getPackages);
 router.get("/:id", authToken, packageService.getPackageByID);

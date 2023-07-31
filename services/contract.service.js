@@ -3,7 +3,9 @@ const app = express();
 app.use(express.json());
 const db = require("../dbConfig");
 //const ContractStage = require("../Classes/Contract/ContractStage");
+const cors = require("cors");
 
+app.use(cors());
 function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();
 }
