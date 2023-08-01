@@ -27,7 +27,7 @@ app.get("/", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     let { email, password } = req.body;
-    /*const user = { email: email };
+    const user = { email: email };
     const result = await db.query(`SELECT * FROM users where email = $1`, [
       email,
     ]);
@@ -41,8 +41,7 @@ app.post("/login", async (req, res) => {
           //res.json({ name: result.rows[0].name });
         }
       });
-    } else res.status(404).json("User doesn't exist");*/
-    res.json({ email: email, password: password });
+    } else res.status(404).json("User doesn't exist");
   } catch (err) {
     res.status(400).json({ error: err });
   }
