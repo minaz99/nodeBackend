@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
-app.use(express.json());
 const cors = require("cors");
 app.use(
   cors({
@@ -12,6 +11,7 @@ app.use(
     methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
+app.use(express.json());
 
 const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
