@@ -21,6 +21,9 @@ app.use("/user", userRouter);
 app.use("/contracts", contractRouter);
 app.use("/components", componentRouter);
 app.use("/packages", packageRouter);*/
+app.get("/", async (req, res) => {
+  res.json("Hello there");
+});
 app.post("/login", async (req, res) => {
   let { email, password } = req.body;
   const user = { email: email };
