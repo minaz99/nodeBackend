@@ -6,12 +6,12 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const cors = require("cors");
-app.use(
+/*app.use(
   cors({
-    origin: "https://localhost:3000",
+    origin: "http://localhost:3000",
     methods: "[GET,PUT,POST,DELETE]",
   })
-);
+);*/
 /*
 const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
