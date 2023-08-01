@@ -25,23 +25,26 @@ app.get("/", async (req, res) => {
   res.json({ msg: "Hello there" });
 });
 app.post("/login", async (req, res) => {
-  /* let { email, password } = req.body;
-  const user = { email: email };
-  const result = await db.query(`SELECT * FROM users where email = $1`, [
-    email,
-  ]);
+  try {
+    let { email, password } = req.body;
+    const user = { email: email };
+    const result = await db.query(`SELECT * FROM users where email = $1`, [
+      email,
+    ]);
 
-  if (result.rowCount > 0) {
-    bcrypt.compare(password, result.rows[0].password, (err, isMatch) => {
-      if (err) throw err;
-      if (isMatch) {
-        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-        res.json({ accessToken: accessToken, name: result.rows[0].name });
-        //res.json({ name: result.rows[0].name });
-      }
-    });
-  } else res.status(404).json("User doesn't exist");*/
-  res.json({ msg: "Alright" });
+    if (result.rowCount > 0) {
+      bcrypt.compare(password, result.rows[0].password, (err, isMatch) => {
+        if (err) throw err;
+        if (isMatch) {
+          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+          res.json({ accessToken: accessToken, name: result.rows[0].name });
+          //res.json({ name: result.rows[0].name });
+        }
+      });
+    } else res.status(404).json("User doesn't exist");
+  } catch (err) {
+    res.status(400).json({ error: err });
+  }
 });
 app.listen(process.env.PORT, () =>
   console.log("Server is running on port 5000")
