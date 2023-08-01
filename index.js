@@ -25,7 +25,7 @@ app.get("/", async (req, res) => {
   res.json({ msg: "Hello there" });
 });
 app.post("/login", async (req, res) => {
-  let { email, password } = req.body;
+  /* let { email, password } = req.body;
   const user = { email: email };
   const result = await db.query(`SELECT * FROM users where email = $1`, [
     email,
@@ -40,7 +40,8 @@ app.post("/login", async (req, res) => {
         //res.json({ name: result.rows[0].name });
       }
     });
-  } else res.status(404).json("User doesn't exist");
+  } else res.status(404).json("User doesn't exist");*/
+  res.json({ msg: "Alright" });
 });
 app.listen(process.env.PORT, () =>
   console.log("Server is running on port 5000")
