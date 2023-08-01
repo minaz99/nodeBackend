@@ -3,6 +3,7 @@ const db = require("./dbConfig");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const express = require("express");
+const router = express.Router();
 const app = express();
 const cors = require("cors");
 app.use(
@@ -13,14 +14,18 @@ app.use(
 );
 app.use(express.json());
 
-const userRouter = require("./routes/user.route");
+/*const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
 const componentRouter = require("./routes/component.route");
-const packageRouter = require("./routes/package.route");
-app.use("/user", userRouter);
+const packageRouter = require("./routes/package.route");*/
+const userServices = require("../services/user.service");
+
+router.post("/login", userServices.login);
+router.post("/register", userServices.register);
+/*app.use("/user", userRouter);
 app.use("/contracts", contractRouter);
 app.use("/components", componentRouter);
-app.use("/packages", packageRouter);
+app.use("/packages", packageRouter);*/
 /*app.get("/", async (req, res) => {
   res.json({ msg: "Hello there" });
 });
