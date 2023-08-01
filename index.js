@@ -18,7 +18,7 @@ app.use(express.json());
 const contractRouter = require("./routes/contract.route");
 const componentRouter = require("./routes/component.route");
 const packageRouter = require("./routes/package.route");*/
-const userServices = require("../services/user.service");
+const userServices = require("./services/user.service");
 
 //router.post("/login", userServices.login);
 //router.post("/register", userServices.register);
