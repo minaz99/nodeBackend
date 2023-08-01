@@ -20,10 +20,10 @@ const componentRouter = require("./routes/component.route");
 const packageRouter = require("./routes/package.route");*/
 const userServices = require("./services/user.service");
 
-//router.post("/login", userServices.login);
-//router.post("/register", userServices.register);
-app.post("/user/login", userServices.login);
-app.post("/user/register", userServices.register);
+router.post("/login", userServices.login);
+router.post("/register", userServices.register);
+//app.post("/user/login", userServices.login);
+//app.post("/user/register", userServices.register);
 /*app.use("/user", userRouter);
 app.use("/contracts", contractRouter);
 app.use("/components", componentRouter);
