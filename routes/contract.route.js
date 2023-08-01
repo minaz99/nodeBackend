@@ -2,11 +2,10 @@ const express = require("express");
 const router = express.Router();
 const authToken = require("../authToken");
 const cors = require("cors");
-
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
 const contractService = require("../services/contract.service");

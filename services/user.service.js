@@ -5,11 +5,10 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const cors = require("cors");
-
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
 const userServices = {

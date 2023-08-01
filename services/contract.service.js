@@ -4,11 +4,10 @@ app.use(express.json());
 const db = require("../dbConfig");
 //const ContractStage = require("../Classes/Contract/ContractStage");
 const cors = require("cors");
-
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
 function getDaysInMonth(year, month) {

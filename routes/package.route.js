@@ -3,11 +3,10 @@ const router = express.Router();
 const authToken = require("../authToken");
 const packageService = require("../services/package.service");
 const cors = require("cors");
-
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
 
