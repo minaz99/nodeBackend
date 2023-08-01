@@ -24,7 +24,7 @@ app.use("/packages", packageRouter);*/
 app.get("/", async (req, res) => {
   res.json("Hello there");
 });
-app.post("/login", async (req, res) => {
+/*app.post("/login", async (req, res) => {
   let { email, password } = req.body;
   const user = { email: email };
   const result = await db.query(`SELECT * FROM users where email = $1`, [
@@ -41,7 +41,7 @@ app.post("/login", async (req, res) => {
       }
     });
   } else res.status(404).json("User doesn't exist");
-});
+});*/
 app.listen(process.env.PORT, () =>
   console.log("Server is running on port 5000")
 );
