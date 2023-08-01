@@ -12,7 +12,7 @@ app.use(
     methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
-/*
+
 const userRouter = require("./routes/user.route");
 const contractRouter = require("./routes/contract.route");
 const componentRouter = require("./routes/component.route");
@@ -20,8 +20,8 @@ const packageRouter = require("./routes/package.route");
 app.use("/user", userRouter);
 app.use("/contracts", contractRouter);
 app.use("/components", componentRouter);
-app.use("/packages", packageRouter);*/
-app.get("/", async (req, res) => {
+app.use("/packages", packageRouter);
+/*app.get("/", async (req, res) => {
   res.json({ msg: "Hello there" });
 });
 app.post("/login", async (req, res) => {
@@ -45,7 +45,7 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     res.status(400).json({ error: err });
   }
-});
+});*/
 app.listen(process.env.PORT, () =>
   console.log("Server is running on port 5000")
 );
