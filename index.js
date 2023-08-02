@@ -27,7 +27,7 @@ const paymentService = require("./services/payment.service");
 app.post("/user/login", userServices.login);
 app.post("/user/register", userServices.register);
 app.get("/contracts/", authToken, contractService.getAllContracts);
-app.get("contracts/:id", authToken, contractService.getContractByID);
+app.get("/contracts/:id", authToken, contractService.getContractByID);
 app.get(
   "/contracts/filter/filterType",
   authToken,
