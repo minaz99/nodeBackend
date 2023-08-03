@@ -226,6 +226,12 @@ const contract = {
         "Cancelled",
         "Finished",
       ];
+      let contractStages = [
+        "Signed",
+        "Event Finished",
+        "Pics Collected",
+        "Finished",
+      ];
       result.rows.forEach((contract) =>
         !eventTypes.includes(contract.eventtype)
           ? eventTypes.push(contract.eventtype)
@@ -240,6 +246,7 @@ const contract = {
         types: eventTypes,
         locations: eventLocations,
         status: contractStatus,
+        stages: contractStages,
       });
     } catch (err) {
       res.status(400).json({ error: err });
