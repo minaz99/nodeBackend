@@ -100,7 +100,7 @@ const contract = {
         ? "photographer"
         : req.query.video
         ? "video"
-        : req.querygroomName
+        : req.query.groomName
         ? "groomName"
         : req.query.secondPartyName
         ? "secondPartyName"
