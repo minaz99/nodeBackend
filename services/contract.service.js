@@ -106,8 +106,8 @@ const contract = {
         ? "secondPartyName"
         : "civilID";
       const result = await db.query(
-        `SELECT * FROM contracts where ${columnCriteria}=$1`,
-        [criteria]
+        `SELECT * FROM contracts where ${columnCriteria} LIKE $1`,
+        [`${criteria}%`]
       );
       res.json({ contracts: result.rows });
     } catch (err) {
