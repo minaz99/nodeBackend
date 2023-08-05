@@ -87,12 +87,24 @@ const contract = {
         ? req.query.stage
         : req.query.photographer
         ? req.query.photographer
-        : req.query.video;
+        : req.query.video
+        ? req.query.video
+        : req.query.groomName
+        ? req.query.groomName
+        : req.query.secondPartyName
+        ? req.query.secondPartyName
+        : req.query.civilID;
       const columnCriteria = req.query.stage
         ? "contractStage"
         : req.query.photographer
         ? "photographer"
-        : "video";
+        : req.query.video
+        ? "video"
+        : req.querygroomName
+        ? "groomName"
+        : req.query.secondPartyName
+        ? "secondPartyName"
+        : "civilID";
       const result = await db.query(
         `SELECT * FROM contracts where ${columnCriteria}=$1`,
         [criteria]
