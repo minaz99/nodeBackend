@@ -204,10 +204,10 @@ const contract = {
       res.json({ contracts: result.rows });
       */
       res.json({
-        brideName: brideName,
-        eventType: eventType,
-        eventLocation: eventLocation,
-        contractStatus: contractStatus,
+        bride: brideName,
+        type: eventType,
+        location: eventLocation,
+        status: contractStatus,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
