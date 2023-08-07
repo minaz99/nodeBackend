@@ -172,12 +172,11 @@ const contract = {
   },
   getContractsByMultipleFilters: async (req, res) => {
     try {
-      /*const { brideName, eventType, eventLocation, contractStatus } =
-        req.params;*/
-      const brideName = req.params.brideName;
-      const eventType = req.params.eventType;
-      const eventLocation = req.params.eventLocation;
-      const contractStatus = req.params.contractStatus;
+      const { brideName, eventType, eventLocation, contractStatus } = req.query;
+      /*const brideName = req.query.brideName;
+      const eventType = req.query.eventType;
+      const eventLocation = req.query.eventLocation;
+      const contractStatus = req.query.contractStatus;*/
       let query = `SELECT * FROM contracts where `;
       let paramterIndex = 1;
       let data = [];
@@ -208,6 +207,9 @@ const contract = {
       res.json({ contracts: result.rows });
       */
       res.json({
+        bride: brideName,
+        type: eventType,
+        location: eventLocation,
         contractStatus: contractStatus,
       });
     } catch (err) {
