@@ -220,7 +220,7 @@ const contract = {
     try {
       const contractsMonthDetails = [];
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
-      for (let i = 1; i < daysInMonth; i++) {
+      for (let i = 1; i <= daysInMonth; i++) {
         contractsMonthDetails.push({ day: i, contracts: [] });
       }
       const result = await db.query(
