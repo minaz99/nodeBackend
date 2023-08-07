@@ -174,6 +174,9 @@ const contract = {
     try {
       /*const { brideName, eventType, eventLocation, contractStatus } =
         req.params;*/
+      const brideName = req.params.brideName;
+      const eventType = req.params.eventType;
+      const eventLocation = req.params.eventLocation;
       const contractStatus = req.params.contractStatus;
       let query = `SELECT * FROM contracts where `;
       let paramterIndex = 1;
@@ -205,7 +208,7 @@ const contract = {
       res.json({ contracts: result.rows });
       */
       res.json({
-        status: contractStatus,
+        contractStatus: contractStatus,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
