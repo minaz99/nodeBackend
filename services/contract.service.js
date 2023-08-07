@@ -207,7 +207,6 @@ const contract = {
         bride: brideName,
         type: eventType,
         location: eventLocation,
-        status: contractStatus,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
