@@ -203,15 +203,15 @@ const contract = {
         paramterIndex += 1;
         data.push(contractStatus);
       }
-      /*const result = await db.query(query, data);
+      const result = await db.query(query, data);
       res.json({ contracts: result.rows });
-      */
-      res.json({
+
+      /*res.json({
         bride: brideName,
         type: eventType,
         location: eventLocation,
         contractStatus: contractStatus,
-      });
+      });*/
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
