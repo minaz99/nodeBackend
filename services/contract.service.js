@@ -278,9 +278,13 @@ const contract = {
           ].contracts.push(contract)
         );
 
-        /*result3.rows.forEach((contract) =>
-          contractsMonthDetails[daysInPrevMonth + daysInMonth + new Date(contract.eventdate).getDate()].contracts.push(contract)
-        );*/
+        result3.rows.forEach((contract) =>
+          contractsMonthDetails[
+            daysNeededFromPreviousMonth +
+              daysInMonth +
+              new Date(contract.eventdate).getDate()
+          ].contracts.push(contract)
+        );
       } else {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
@@ -302,7 +306,7 @@ const contract = {
 
       res.json({
         Days: contractsMonthDetails,
-        nextYear: daysInPrevMonth + daysInMonth,
+        nextYear: daysNeededFromPreviousMonth + daysInMonth,
         nextMonth: parseInt(nextMonth) + 1,
         prevMonth: prevMonth - 1,
       });
