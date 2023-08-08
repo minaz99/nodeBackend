@@ -278,7 +278,7 @@ const contract = {
             daysInPrevMonth +
               daysInMonth +
               new Date(contract.eventdate).getDate() -
-              1
+              2
           ].contracts.push(contract)
         );
       } else {
