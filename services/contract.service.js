@@ -219,7 +219,8 @@ const contract = {
   getContractsPerMonth: async (req, res) => {
     try {
       let result1;
-      let result2;
+      let result;
+      let result3;
       let prevMonth = req.query.month;
       let nextMonth = req.query.month;
       const contractsMonthDetails = [];
@@ -262,11 +263,11 @@ const contract = {
         for (let i = 1; i <= daysNeededFromNextMonth; i++)
           contractsMonthDetails.push({ day: i, contracts: [] });
 
-        const result1 = await db.query(
+        result1 = await db.query(
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
           [prevMonth - 1, prevYear]
         );
-        const result3 = await db.query(
+        result3 = await db.query(
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
           [nextMonth + 1, nextYear]
         );
@@ -277,16 +278,16 @@ const contract = {
           ].contracts.push(contract)
         );
 
-        result3.rows.forEach((contract) =>
+        /*result3.rows.forEach((contract) =>
           contractsMonthDetails[30].contracts.push(contract)
-        );
+        );*/
       } else {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
       }
 
-      const result = await db.query(
+      result = await db.query(
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
         [req.query.month, req.query.year]
       );
@@ -299,7 +300,7 @@ const contract = {
         ].contracts.push(contract)
       );
 
-      res.json({ Days: contractsMonthDetails });
+      res.json({ Days: contractsMonthDetails, result3: result3.rows });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
