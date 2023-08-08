@@ -250,7 +250,7 @@ const contract = {
       if (daysNeededFromPreviousMonth !== 0) {
         for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
-          i >= daysInPrevMonth;
+          i <= daysInPrevMonth;
           i++
         )
           contractsMonthDetails.push({ day: i, contracts: [] });
