@@ -222,7 +222,7 @@ const contract = {
       let result;
       let result3;
       let prevMonth = req.query.month;
-      let nextMonth = req.query.month;
+      var nextMonth = req.query.month;
       const contractsMonthDetails = [];
       let prevYear = req.query.year;
       var nextYear = req.query.year;
