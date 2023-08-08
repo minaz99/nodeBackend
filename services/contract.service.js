@@ -225,7 +225,7 @@ const contract = {
       let nextMonth = req.query.month;
       const contractsMonthDetails = [];
       let prevYear = req.query.year;
-      let nextYear = req.query.year;
+      var nextYear = req.query.year;
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
       let daysNeededFromPreviousMonth = new Date(
         `${req.query.year}/${req.query.month}/1`
