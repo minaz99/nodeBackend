@@ -278,7 +278,7 @@ const contract = {
         );
 
         result3.rows.forEach((contract) =>
-          contractsMonthDetails[34].contracts.push(contract)
+          contractsMonthDetails[30].contracts.push(contract)
         );
       } else {
         for (let i = 1; i <= daysInMonth; i++) {
