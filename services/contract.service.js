@@ -218,20 +218,78 @@ const contract = {
   },
   getContractsPerMonth: async (req, res) => {
     try {
+      let result1;
+      let result2;
       const contractsMonthDetails = [];
+      let prevYear = req.query.year;
+      let nextYear = req.query.year;
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
+      let daysNeededFromPreviousMonth = new Date(
+        `${req.query.year}/${req.query.month}/1`
+      ).getDay();
+      let daysNeededFromNextMonth =
+        6 -
+        new Date(
+          `${req.query.year}/${req.query.month}/${daysInMonth}`
+        ).getDay();
+      let daysInPrevMonth = 0;
+      if (req.query.month - 1 === 0) {
+        daysInPrevMonth = getDaysInMonth(req.query.year - 1, 12);
+        prevYear = req.query.year - 1;
+      } else daysInPrevMonth = getDaysInMonth(req.query.year, req.query.month);
+      let daysInNextMonth = 0;
+      if (req.query.month + 1 === 13) {
+        daysInNextMonth = getDaysInMonth(req.query.year + 1, 1);
+        nextYear = req.query.year + 1;
+      } else daysInNextMonth = getDaysInMonth(req.query.year, req.query.month);
+
       for (let i = 1; i <= daysInMonth; i++) {
         contractsMonthDetails.push({ day: i, contracts: [] });
+      }
+
+      if (daysNeededFromPreviousMonth !== 0) {
+        for (
+          let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
+          i >= daysInPrevMonth;
+          i++
+        )
+          contractsMonthDetails.push({ day: i, contracts: [] });
+
+        for (let i = 1; i <= daysNeededFromNextMonth; i++)
+          contractsMonthDetails.push({ day: i, contracts: [] });
+
+        const result1 = await db.query(
+          `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
+          [req.query.month - 1, prevYear]
+        );
+        const result3 = await db.query(
+          `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
+          [req.query.month + 1, nextYear]
+        );
+
+        result1.rows.forEach((contract) =>
+          contractsMonthDetails[
+            daysInPrevMonth - new Date(contract.eventdate).getDate() - 1
+          ].contracts.push(contract)
+        );
+
+        result3.rows.forEach((contract) =>
+          contractsMonthDetails[
+            daysInMonth + new Date(contract.eventdate).getDate() - 1
+          ].contracts.push(contract)
+        );
       }
       const result = await db.query(
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
         [req.query.month, req.query.year]
       );
+
       result.rows.forEach((contract) =>
         contractsMonthDetails[
           new Date(contract.eventdate).getDate() - 1
         ].contracts.push(contract)
       );
+
       res.json({ Days: contractsMonthDetails });
     } catch (err) {
       res.status(400).json({ error: err.msg });
