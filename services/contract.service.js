@@ -304,6 +304,7 @@ const contract = {
         Days: contractsMonthDetails,
         nextYear: nextYear,
         nextMonth: nextMonth + 1,
+        prevMonth: prevMonth - 1,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
