@@ -254,9 +254,6 @@ const contract = {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
-        for (let i = 1; i <= daysInMonth; i++) {
-          contractsMonthDetails.push({ day: i, contracts: [] });
-        }
 
         for (let i = 1; i <= daysNeededFromNextMonth; i++)
           contractsMonthDetails.push({ day: i, contracts: [] });
