@@ -269,7 +269,7 @@ const contract = {
 
         result1.rows.forEach((contract) =>
           contractsMonthDetails[
-            daysInPrevMonth - new Date(contract.eventdate).getDate()
+            daysInPrevMonth + new Date(contract.eventdate).getDate()
           ].contracts.push(contract)
         );
 
@@ -290,7 +290,9 @@ const contract = {
 
       result.rows.forEach((contract) =>
         contractsMonthDetails[
-          new Date(contract.eventdate).getDate() + daysNeededFromPreviousMonth
+          new Date(contract.eventdate).getDate() +
+            daysNeededFromPreviousMonth -
+            1
         ].contracts.push(contract)
       );
 
