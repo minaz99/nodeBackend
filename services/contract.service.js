@@ -262,10 +262,10 @@ const contract = {
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
           [req.query.month - 1, prevYear]
         );
-        const result3 = await db.query(
+        /*const result3 = await db.query(
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
           [req.query.month + 1, nextYear]
-        );
+        );*/
 
         result1.rows.forEach((contract) =>
           contractsMonthDetails[
