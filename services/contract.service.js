@@ -243,10 +243,6 @@ const contract = {
         nextYear = req.query.year + 1;
       } else daysInNextMonth = getDaysInMonth(req.query.year, req.query.month);
 
-      for (let i = 1; i <= daysInMonth; i++) {
-        contractsMonthDetails.push({ day: i, contracts: [] });
-      }
-
       if (daysNeededFromPreviousMonth !== 0) {
         for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
@@ -267,6 +263,9 @@ const contract = {
           [req.query.month + 1, nextYear]
         );
 
+        for (let i = 1; i <= daysInMonth; i++) {
+          contractsMonthDetails.push({ day: i, contracts: [] });
+        }
         result1.rows.forEach((contract) =>
           contractsMonthDetails[
             daysInPrevMonth - new Date(contract.eventdate).getDate() - 1
