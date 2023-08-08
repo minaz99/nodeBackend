@@ -278,13 +278,13 @@ const contract = {
           ].contracts.push(contract)
         );
 
-        result3.rows.forEach((contract) =>
+        /*result3.rows.forEach((contract) =>
           contractsMonthDetails[
             daysNeededFromPreviousMonth +
               daysInMonth +
               new Date(contract.eventdate).getDate()
           ].contracts.push(contract)
-        );
+        );*/
       } else {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
