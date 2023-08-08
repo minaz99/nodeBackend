@@ -266,10 +266,6 @@ const contract = {
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
           [req.query.month + 1, nextYear]
         );
-      } else {
-        for (let i = 1; i <= daysInMonth; i++) {
-          contractsMonthDetails.push({ day: i, contracts: [] });
-        }
 
         result1.rows.forEach((contract) =>
           contractsMonthDetails[
@@ -279,9 +275,13 @@ const contract = {
 
         result3.rows.forEach((contract) =>
           contractsMonthDetails[
-            daysInMonth + new Date(contract.eventdate).getDate() - 1
+            daysInMonth + new Date(contract.eventdate).getDate()
           ].contracts.push(contract)
         );
+      } else {
+        for (let i = 1; i <= daysInMonth; i++) {
+          contractsMonthDetails.push({ day: i, contracts: [] });
+        }
       }
       const result = await db.query(
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
