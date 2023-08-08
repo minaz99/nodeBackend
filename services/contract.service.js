@@ -220,6 +220,8 @@ const contract = {
     try {
       let result1;
       let result2;
+      let prevMonth = req.query.month;
+      let nextMonth = req.query.month;
       const contractsMonthDetails = [];
       let prevYear = req.query.year;
       let nextYear = req.query.year;
@@ -236,11 +238,13 @@ const contract = {
       if (req.query.month - 1 === 0) {
         daysInPrevMonth = getDaysInMonth(req.query.year - 1, 12);
         prevYear = req.query.year - 1;
+        prevMonth = 13;
       } else daysInPrevMonth = getDaysInMonth(req.query.year, req.query.month);
       let daysInNextMonth = 0;
       if (req.query.month + 1 === 13) {
         daysInNextMonth = getDaysInMonth(req.query.year + 1, 1);
         nextYear = req.query.year + 1;
+        nextMonth = 0;
       } else daysInNextMonth = getDaysInMonth(req.query.year, req.query.month);
 
       if (daysNeededFromPreviousMonth !== 0) {
@@ -260,11 +264,11 @@ const contract = {
 
         const result1 = await db.query(
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
-          [req.query.month - 1, prevYear]
+          [prevMonth - 1, prevYear]
         );
         const result3 = await db.query(
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
-          [req.query.month + 1, nextYear]
+          [nextMonth + 1, nextYear]
         );
 
         result1.rows.forEach((contract) =>
