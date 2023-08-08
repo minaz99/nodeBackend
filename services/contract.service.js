@@ -307,9 +307,6 @@ const contract = {
 
       res.json({
         Days: contractsMonthDetails,
-        nextYear: daysNeededFromPreviousMonth + daysInMonth - 1,
-        nextMonth: parseInt(nextMonth) + 1,
-        prevMonth: prevMonth - 1,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
