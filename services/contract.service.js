@@ -221,11 +221,11 @@ const contract = {
       let result1;
       let result;
       let result3;
-      /*let prevMonth = req.query.month;
+      let prevMonth = req.query.month;
       let nextMonth = parseInt(req.query.month);
-      let month = parseInt(req.query.month);*/
+      let month = parseInt(req.query.month);
       let contractsMonthDetails = [];
-      /* let prevYear = req.query.year;
+      let prevYear = req.query.year;
       let nextYear = parseInt(req.query.year);
       let year = parseInt(req.query.year);
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
@@ -237,7 +237,7 @@ const contract = {
           `${req.query.year}/${req.query.month}/${daysInMonth}`
         ).getDay();
       let daysInPrevMonth = 0;
-      /* if (parseInt(req.query.month) - 1 === 0) {
+      if (parseInt(req.query.month) - 1 === 0) {
         daysInPrevMonth = getDaysInMonth(req.query.year - 1, 12);
         prevYear = req.query.year - 1;
         prevMonth = 13;
@@ -295,13 +295,13 @@ const contract = {
               1
           ].contracts.push(contract)
         );*/
-      /*    } else {
+        /*    } else {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
       }
 */
-      /*  result = await db.query(
+        /*  result = await db.query(
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
         [parseInt(req.query.month), parseInt(req.query.year)]
       );
@@ -314,30 +314,31 @@ const contract = {
         ].contracts.push(contract)
       );
         */
-      /*result.rows.forEach((contract) =>
+        /*result.rows.forEach((contract) =>
         contractsMonthDetails[
           new Date(contract.eventdate).getDate()
         ].contracts.push(contract)
       );*/
 
-      res.json({
-        Days: contractsMonthDetails,
-        // daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
-        /*prevMonth: prevMonth - 1,
-        nextMonth: nextMonth + 1,
-            nextYear: nextYear + 1,
-        prevYear: prevYear,
-        daysInMonth: daysInMonth,
-        daysInPrevMonth: daysInPrevMonth,
-        daysInNextMonth: daysInNextMonth,
-        daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
-        daysNeededFromNextMonth: daysNeededFromNextMonth,
-        month: month,
-        year: year,*/
-        /* result: result.rows,
+        res.json({
+          Days: contractsMonthDetails,
+
+          prevMonth: prevMonth - 1,
+          nextMonth: nextMonth + 1,
+          nextYear: nextYear + 1,
+          prevYear: prevYear,
+          daysInMonth: daysInMonth,
+          daysInPrevMonth: daysInPrevMonth,
+          daysInNextMonth: daysInNextMonth,
+          daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
+          daysNeededFromNextMonth: daysNeededFromNextMonth,
+          month: month,
+          year: year,
+          /* result: result.rows,
         resul1: result1.rows,
         result3: result3.rows,*/
-      });
+        });
+      }
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
