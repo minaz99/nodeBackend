@@ -320,6 +320,7 @@ const contract = {
         daysNeededFromNextMonth: daysNeededFromNextMonth,
         month: month,
         year: year,
+        result: result.rows,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
