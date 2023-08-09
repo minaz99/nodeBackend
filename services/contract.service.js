@@ -230,7 +230,7 @@ const contract = {
       let year = parseInt(req.query.year);
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
       let daysNeededFromPreviousMonth = new Date(`${year}/${month}/1`).getDay();
-
+      let kkk = -1;
       let daysNeededFromNextMonth =
         6 -
         new Date(
@@ -289,8 +289,10 @@ const contract = {
 
         result3.rows.forEach((contract) => {
           if (
-            new Date(contract.eventDate).getDate() <= daysNeededFromNextMonth
+            new Date(contract.eventDate).getDate() <
+            daysInNextMonth - daysNeededFromNextMonth
           ) {
+            kkk = 99;
             contractsMonthDetails[
               daysNeededFromPreviousMonth +
                 daysInMonth +
@@ -339,11 +341,7 @@ const contract = {
         month: month,
         year: year,
         result3: result3,
-        kkk:
-          daysNeededFromPreviousMonth +
-          daysInMonth +
-          new Date("2023/8/3").getDate() -
-          1,
+        kkk: kkk,
         /* result: result.rows,
         resul1: result1.rows,
         result3: result3.rows,*/
