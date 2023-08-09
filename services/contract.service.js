@@ -221,9 +221,9 @@ const contract = {
       let result1;
       let result;
       let result3;
-      let prevMonth = req.query.month;
+      /*let prevMonth = req.query.month;
       let nextMonth = parseInt(req.query.month);
-      let month = parseInt(req.query.month);
+      let month = parseInt(req.query.month);*/
       let contractsMonthDetails = [];
       /* let prevYear = req.query.year;
       let nextYear = parseInt(req.query.year);
@@ -323,9 +323,9 @@ const contract = {
       res.json({
         Days: contractsMonthDetails,
         // daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
-        prevMonth: prevMonth - 1,
+        /*prevMonth: prevMonth - 1,
         nextMonth: nextMonth + 1,
-        /*    nextYear: nextYear + 1,
+            nextYear: nextYear + 1,
         prevYear: prevYear,
         daysInMonth: daysInMonth,
         daysInPrevMonth: daysInPrevMonth,
