@@ -321,6 +321,8 @@ const contract = {
         month: month,
         year: year,
         result: result.rows,
+        resul1: result1.rows,
+        result3: result3.rows,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
