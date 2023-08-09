@@ -274,11 +274,18 @@ const contract = {
           [parseInt(nextMonth) + 1, nextYear]
         );
 
-        result1.rows.forEach((contract) =>
-          contractsMonthDetails[
-            daysInPrevMonth - new Date(contract.eventdate).getDate() + 1
-          ].contracts.push(contract)
-        );
+        result1.rows.forEach((contract) => {
+          if (
+            new Date(contract.eventdate).getDate() >=
+            daysInPrevMonth - daysNeededFromPreviousMonth
+          )
+            contractsMonthDetails[
+              (daysInPrevMonth -
+                new Date(contract.eventdate).getDate() -
+                daysNeededFromPreviousMonth) *
+                -1
+            ].contracts.push(contract);
+        });
 
         result3.rows.forEach((contract) =>
           contractsMonthDetails[
