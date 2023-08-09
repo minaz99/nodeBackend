@@ -286,7 +286,7 @@ const contract = {
                 -1
             ].contracts.push(contract);
         });
-        /*
+
         result3.rows.forEach((contract) =>
           contractsMonthDetails[
             daysNeededFromPreviousMonth +
@@ -299,7 +299,6 @@ const contract = {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
-        */
       }
 
       result = await db.query(
