@@ -234,7 +234,7 @@ const contract = {
       ).getDay();
       let result;
       let contractsMonthDetails = [];
-      /* let daysNeededFromNextMonth =
+      let daysNeededFromNextMonth =
         6 -
         new Date(
           `${req.query.year}/${req.query.month}/${daysInMonth}`
@@ -251,9 +251,9 @@ const contract = {
         nextYear = req.query.year + 1;
         nextMonth = 0;
       } else daysInNextMonth = getDaysInMonth(nextYear, nextMonth + 1);
-      */
+
       if (daysNeededFromPreviousMonth !== 0) {
-        /* for (
+        for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
           i <= daysInPrevMonth;
           i++
@@ -297,7 +297,7 @@ const contract = {
               new Date(contract.eventdate).getDate() -
               1
           ].contracts.push(contract)
-        );*/
+        );
       } else {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
@@ -319,7 +319,7 @@ const contract = {
 
       res.json({
         Days: contractsMonthDetails,
-        /*prevMonth: prevMonth - 1,
+        prevMonth: prevMonth - 1,
         nextMonth: nextMonth + 1,
         nextYear: nextYear + 1,
         prevYear: prevYear,
@@ -332,7 +332,7 @@ const contract = {
         year: year,
         result: result.rows,
         resul1: result1.rows,
-        result3: result3.rows,*/
+        result3: result3.rows,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
