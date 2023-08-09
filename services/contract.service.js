@@ -272,7 +272,7 @@ const contract = {
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
           [parseInt(nextMonth) + 1, nextYear]
         );
-        /*
+
         result1.rows.forEach((contract) => {
           if (
             new Date(contract.eventdate).getDate() >
@@ -286,7 +286,7 @@ const contract = {
                 -1
             ].contracts.push(contract);
         });
-
+        /*
         result3.rows.forEach((contract) =>
           contractsMonthDetails[
             daysNeededFromPreviousMonth +
