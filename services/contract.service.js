@@ -308,11 +308,17 @@ const contract = {
         [req.query.month, req.query.year]
       );
 
-      result.rows.forEach((contract) =>
+      /*result.rows.forEach((contract) =>
         contractsMonthDetails[
           new Date(contract.eventdate).getDate() +
             daysNeededFromPreviousMonth -
             1
+        ].contracts.push(contract)
+      ); */
+
+      result.rows.forEach((contract) =>
+        contractsMonthDetails[
+          new Date(contract.eventdate).getDate()
         ].contracts.push(contract)
       );
 
