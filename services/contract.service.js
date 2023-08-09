@@ -218,9 +218,9 @@ const contract = {
   },
   getContractsPerMonth: async (req, res) => {
     try {
-      /*let result1;
+      let result1;
       let result;
-      let result3;*/
+      let result3;
       /*let prevMonth = req.query.month;
       let nextMonth = parseInt(req.query.month);
       let month = parseInt(req.query.month);*/
