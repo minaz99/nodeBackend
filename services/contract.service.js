@@ -222,8 +222,8 @@ const contract = {
       let result;
       let result3;
       let prevMonth = req.query.month;
-      let nextMonth = req.query.month;
-      const contractsMonthDetails = [];
+      let nextMonth = parseInt(req.query.month);
+      let contractsMonthDetails = [];
       let prevYear = req.query.year;
       let nextYear = req.query.year;
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
@@ -308,6 +308,14 @@ const contract = {
       res.json({
         Days: contractsMonthDetails,
         prevMonth: prevMonth - 1,
+        nextMonth: nextMonth + 1,
+        nextYear: nextYear + 1,
+        prevYear: prevYear,
+        daysInMonth: daysInMonth,
+        daysInPrevMonth: daysInPrevMonth,
+        daysInNextMonth: daysInNextMonth,
+        daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
+        daysNeededFromNextMonth: daysNeededFromNextMonth,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
