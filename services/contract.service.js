@@ -250,7 +250,7 @@ const contract = {
       } else daysInNextMonth = getDaysInMonth(nextYear, nextMonth + 1);
 
       if (daysNeededFromPreviousMonth !== 0) {
-        /* for (
+        for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
           i <= daysInPrevMonth;
           i++
@@ -272,7 +272,7 @@ const contract = {
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
           [parseInt(nextMonth) + 1, nextYear]
         );
-
+        /*
         result1.rows.forEach((contract) => {
           if (
             new Date(contract.eventdate).getDate() >
