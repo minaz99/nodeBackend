@@ -237,7 +237,7 @@ const contract = {
           `${req.query.year}/${req.query.month}/${daysInMonth}`
         ).getDay();
       let daysInPrevMonth = 0;
-      if (parseInt(req.query.month) - 1 === 0) {
+      /* if (parseInt(req.query.month) - 1 === 0) {
         daysInPrevMonth = getDaysInMonth(req.query.year - 1, 12);
         prevYear = req.query.year - 1;
         prevMonth = 13;
@@ -295,12 +295,12 @@ const contract = {
               1
           ].contracts.push(contract)
         );*/
-      } else {
+      /*    } else {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
       }
-
+*/
       /*  result = await db.query(
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
         [parseInt(req.query.month), parseInt(req.query.year)]
