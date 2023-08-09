@@ -282,7 +282,7 @@ const contract = {
             contractsMonthDetails[
               (daysInPrevMonth -
                 new Date(contract.eventdate).getDate() -
-                daysNeededFromPreviousMonth -
+                daysNeededFromPreviousMonth +
                 1) *
                 -1
             ].contracts.push(contract);
