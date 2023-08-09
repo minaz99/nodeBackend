@@ -225,7 +225,7 @@ const contract = {
       let nextMonth = parseInt(req.query.month);
       let contractsMonthDetails = [];
       let prevYear = req.query.year;
-      let nextYear = req.query.year;
+      let nextYear = parseInt(req.query.year);
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
       let daysNeededFromPreviousMonth = new Date(
         `${req.query.year}/${req.query.month}/1`
@@ -240,13 +240,13 @@ const contract = {
         daysInPrevMonth = getDaysInMonth(req.query.year - 1, 12);
         prevYear = req.query.year - 1;
         prevMonth = 13;
-      } else daysInPrevMonth = getDaysInMonth(req.query.year, req.query.month);
+      } else daysInPrevMonth = getDaysInMonth(prevYear, prevMonth - 1);
       let daysInNextMonth = 0;
       if (parseInt(req.query.month) + 1 === 13) {
         daysInNextMonth = getDaysInMonth(req.query.year + 1, 1);
         nextYear = req.query.year + 1;
         nextMonth = 0;
-      } else daysInNextMonth = getDaysInMonth(req.query.year, req.query.month);
+      } else daysInNextMonth = getDaysInMonth(nextYear, nextMonth + 1);
 
       if (daysNeededFromPreviousMonth !== 0) {
         for (
