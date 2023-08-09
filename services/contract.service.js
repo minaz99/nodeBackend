@@ -324,6 +324,7 @@ const contract = {
 
       res.json({
         Days: contractsMonthDetails,
+        daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
         /*  prevMonth: prevMonth - 1,
         nextMonth: nextMonth + 1,
         nextYear: nextYear + 1,
