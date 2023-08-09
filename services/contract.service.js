@@ -339,6 +339,11 @@ const contract = {
         month: month,
         year: year,
         result3: result3,
+        kkk:
+          daysNeededFromPreviousMonth +
+          daysInMonth +
+          new Date("2023/8/3").getDate() -
+          1,
         /* result: result.rows,
         resul1: result1.rows,
         result3: result3.rows,*/
