@@ -289,8 +289,7 @@ const contract = {
 
         result3.rows.forEach((contract) => {
           if (
-            new DragEvent(contract.eventDate).getDate() <=
-            daysNeededFromNextMonth
+            new Date(contract.eventDate).getDate() <= daysNeededFromNextMonth
           ) {
             contractsMonthDetails[
               daysNeededFromPreviousMonth +
