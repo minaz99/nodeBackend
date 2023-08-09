@@ -225,7 +225,7 @@ const contract = {
       let nextMonth = parseInt(req.query.month);
       let month = parseInt(req.query.month);
       let contractsMonthDetails = [];
-      let prevYear = req.query.year;
+      let prevYear = parseInt(req.query.year);
       let nextYear = parseInt(req.query.year);
       let year = parseInt(req.query.year);
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
@@ -315,11 +315,11 @@ const contract = {
         ].contracts.push(contract)
       );*/
 
-      /*result.rows.forEach((contract) =>
+      result.rows.forEach((contract) =>
         contractsMonthDetails[
           new Date(contract.eventdate).getDate()
         ].contracts.push(contract)
-      );*/
+      );
 
       res.json({
         Days: contractsMonthDetails,
