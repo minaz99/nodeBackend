@@ -218,7 +218,7 @@ const contract = {
   },
   getContractsPerMonth: async (req, res) => {
     try {
-      let result1;
+      /*let result1;
       let result;
       let result3;
       let prevMonth = req.query.month;
@@ -228,11 +228,12 @@ const contract = {
       let prevYear = req.query.year;
       let nextYear = parseInt(req.query.year);
       let year = parseInt(req.query.year);
-      let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
+      let daysInMonth = getDaysInMonth(req.query.year, req.query.month);*/
       let daysNeededFromPreviousMonth = new Date(
         `${req.query.year}/${req.query.month}/1`
       ).getDay();
-      let daysNeededFromNextMonth =
+      let result;
+      /* let daysNeededFromNextMonth =
         6 -
         new Date(
           `${req.query.year}/${req.query.month}/${daysInMonth}`
@@ -249,7 +250,7 @@ const contract = {
         nextYear = req.query.year + 1;
         nextMonth = 0;
       } else daysInNextMonth = getDaysInMonth(nextYear, nextMonth + 1);
-
+      */
       if (daysNeededFromPreviousMonth !== 0) {
         /* for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
