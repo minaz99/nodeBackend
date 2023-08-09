@@ -233,6 +233,7 @@ const contract = {
         `${req.query.year}/${req.query.month}/1`
       ).getDay();
       let result;
+      let contractsMonthDetails = [];
       /* let daysNeededFromNextMonth =
         6 -
         new Date(
