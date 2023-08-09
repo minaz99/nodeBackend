@@ -250,7 +250,7 @@ const contract = {
       } else daysInNextMonth = getDaysInMonth(nextYear, nextMonth + 1);
 
       if (daysNeededFromPreviousMonth !== 0) {
-        for (
+        /* for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
           i <= daysInPrevMonth;
           i++
@@ -299,6 +299,7 @@ const contract = {
         for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
+        */
       }
 
       result = await db.query(
