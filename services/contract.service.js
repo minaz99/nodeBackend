@@ -302,7 +302,7 @@ const contract = {
         }
       }
 
-      result = await db.query(
+      /* result = await db.query(
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
         [req.query.month, req.query.year]
       );
@@ -313,7 +313,7 @@ const contract = {
             daysNeededFromPreviousMonth -
             1
         ].contracts.push(contract)
-      );
+      );*/
 
       res.json({
         Days: contractsMonthDetails,
