@@ -230,7 +230,7 @@ const contract = {
       let year = parseInt(req.query.year);
       let daysInMonth = getDaysInMonth(req.query.year, req.query.month);
       let daysNeededFromPreviousMonth = new Date(`${year}/${month}/1`).getDay();
-      let something = 0;
+
       let daysNeededFromNextMonth =
         6 -
         new Date(
@@ -250,7 +250,6 @@ const contract = {
       } else daysInNextMonth = getDaysInMonth(nextYear, nextMonth + 1);
 
       if (daysNeededFromPreviousMonth !== 0) {
-        something = 99;
         for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
           i <= daysInPrevMonth;
@@ -258,20 +257,20 @@ const contract = {
         )
           contractsMonthDetails.push({ day: i, contracts: [] });
 
-        for (let i = 1; i <= parseInt(daysInMonth); i++) {
+        for (let i = 1; i <= daysInMonth; i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
 
-        for (let i = 1; i <= parseInt(daysNeededFromNextMonth); i++)
+        for (let i = 1; i <= daysNeededFromNextMonth; i++)
           contractsMonthDetails.push({ day: i, contracts: [] });
 
         result1 = await db.query(
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
-          [parseInt(prevMonth - 1), prevYear]
+          [parseInt(prevMonth) - 1, prevYear]
         );
         result3 = await db.query(
           `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2 `,
-          [parseInt(nextMonth + 1), nextYear]
+          [parseInt(nextMonth) + 1, nextYear]
         );
 
         result1.rows.forEach((contract) => {
@@ -323,9 +322,8 @@ const contract = {
 
       res.json({
         Days: contractsMonthDetails,
-        daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
-        something: something,
-        /*  prevMonth: prevMonth - 1,
+        // daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
+        prevMonth: prevMonth - 1,
         nextMonth: nextMonth + 1,
         nextYear: nextYear + 1,
         prevYear: prevYear,
@@ -338,7 +336,7 @@ const contract = {
         year: year,
         result: result.rows,
         resul1: result1.rows,
-        result3: result3.rows,*/
+        result3: result3.rows,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
