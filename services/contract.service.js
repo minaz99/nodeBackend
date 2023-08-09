@@ -315,11 +315,11 @@ const contract = {
         ].contracts.push(contract)
       );*/
 
-      result.rows.forEach((contract) =>
+      /*result.rows.forEach((contract) =>
         contractsMonthDetails[
           new Date(contract.eventdate).getDate()
         ].contracts.push(contract)
-      );
+      );*/
 
       res.json({
         Days: contractsMonthDetails,
