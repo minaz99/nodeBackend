@@ -257,11 +257,11 @@ const contract = {
         )
           contractsMonthDetails.push({ day: i, contracts: [] });
 
-        for (let i = 1; i <= daysInMonth; i++) {
+        for (let i = 1; i <= parseInt(daysInMonth); i++) {
           contractsMonthDetails.push({ day: i, contracts: [] });
         }
 
-        for (let i = 1; i <= daysNeededFromNextMonth; i++)
+        for (let i = 1; i <= parseInt(daysNeededFromNextMonth); i++)
           contractsMonthDetails.push({ day: i, contracts: [] });
 
         result1 = await db.query(
