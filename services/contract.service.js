@@ -325,7 +325,7 @@ const contract = {
         // daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
         prevMonth: prevMonth - 1,
         nextMonth: nextMonth + 1,
-        nextYear: nextYear + 1,
+        /*    nextYear: nextYear + 1,
         prevYear: prevYear,
         daysInMonth: daysInMonth,
         daysInPrevMonth: daysInPrevMonth,
@@ -333,7 +333,7 @@ const contract = {
         daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
         daysNeededFromNextMonth: daysNeededFromNextMonth,
         month: month,
-        year: year,
+        year: year,*/
         result: result.rows,
         resul1: result1.rows,
         result3: result3.rows,
