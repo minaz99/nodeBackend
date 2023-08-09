@@ -236,13 +236,13 @@ const contract = {
           `${req.query.year}/${req.query.month}/${daysInMonth}`
         ).getDay();
       let daysInPrevMonth = 0;
-      if (req.query.month - 1 === 0) {
+      if (parseInt(req.query.month) - 1 === 0) {
         daysInPrevMonth = getDaysInMonth(req.query.year - 1, 12);
         prevYear = req.query.year - 1;
         prevMonth = 13;
       } else daysInPrevMonth = getDaysInMonth(req.query.year, req.query.month);
       let daysInNextMonth = 0;
-      if (req.query.month + 1 === 13) {
+      if (parseInt(req.query.month) + 1 === 13) {
         daysInNextMonth = getDaysInMonth(req.query.year + 1, 1);
         nextYear = req.query.year + 1;
         nextMonth = 0;
