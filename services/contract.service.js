@@ -307,13 +307,13 @@ const contract = {
         [parseInt(req.query.month), parseInt(req.query.year)]
       );
 
-      result.rows.forEach((contract) =>
+      /*  result.rows.forEach((contract) =>
         contractsMonthDetails[
           new Date(contract.eventdate).getDate() +
             daysNeededFromPreviousMonth -
             1
         ].contracts.push(contract)
-      );
+      );*/
 
       /*result.rows.forEach((contract) =>
         contractsMonthDetails[
