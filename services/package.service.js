@@ -30,10 +30,9 @@ const package = {
   },
   deletePackage: async (req, res) => {
     try {
-      const result = await db.query(
-        `DELETE FROM packages where id = $1`,
-        req.params.id
-      );
+      const result = await db.query(`DELETE FROM packages where id = $1`, [
+        req.params.id,
+      ]);
       res.json({ package: result.rows[0] });
     } catch (err) {
       res.status(400).json({ error: err });
