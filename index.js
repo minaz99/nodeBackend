@@ -22,6 +22,8 @@ const packageRouter = require("./routes/package.route");*/
 const userServices = require("./services/user.service");
 const contractService = require("./services/contract.service");
 const paymentService = require("./services/payment.service");
+const componentService = require("./services/component.service");
+const packageService = require("./services/package.service");
 //router.post("/login", userServices.login);
 //router.post("/register", userServices.register);
 app.post("/user/login", userServices.login);
@@ -61,6 +63,23 @@ app.get(
 app.post("/contracts/", authToken, contractService.createContract);
 app.post("/contracts/:id", authToken, contractService.updateContractDetails);
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
+
+app.get("/components/", authToken, componentService.getComponents);
+app.get("/components/:id", authToken, componentService.getComponentByID);
+app.get(
+  "/components/type/:type",
+  authToken,
+  componentService.getComponentsByType
+);
+app.post("/components/", authToken, componentService.newComponent);
+app.put("/components/:id", authToken, componentService.editComponent);
+app.delete("/components/:id", authToken, componentService.deleteComponent);
+
+app.get("/packages/", authToken, packageService.getPackages);
+app.get("/packages/:id", authToken, packageService.getPackageByID);
+app.put("/packages/:id", authToken, packageService.editPackage);
+app.post("/packages/", authToken, packageService.newPackage);
+app.delete("/packages/:id", authToken, packageService.deletePackage);
 /*app.use("/user", userRouter);
 app.use("/contracts", contractRouter);
 app.use("/components", componentRouter);
