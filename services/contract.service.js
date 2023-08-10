@@ -323,23 +323,6 @@ const contract = {
 
       res.json({
         Days: contractsMonthDetails,
-
-        prevMonth: prevMonth - 1,
-        nextMonth: nextMonth + 1,
-        nextYear: nextYear + 1,
-        prevYear: prevYear,
-        daysInMonth: daysInMonth,
-        daysInPrevMonth: daysInPrevMonth,
-        daysInNextMonth: daysInNextMonth,
-        daysNeededFromPreviousMonth: daysNeededFromPreviousMonth,
-        daysNeededFromNextMonth: daysNeededFromNextMonth,
-        month: month,
-        year: year,
-        result3: result3.rows,
-
-        /* result: result.rows,
-        resul1: result1.rows,
-        result3: result3.rows,*/
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
