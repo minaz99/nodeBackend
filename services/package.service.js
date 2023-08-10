@@ -43,6 +43,7 @@ const package = {
       name,
       pictures,
       magazineName,
+      albumCrystal,
       magazineMini,
       video,
       openPhotoAndVideo,
@@ -62,6 +63,9 @@ const package = {
     magazineName
       ? packageDataToEdit.push(magazineName)
       : packageDataToEdit.push(result1.rows[0].magazinename);
+    albumCrystal
+      ? packageDataToEdit.push(albumCrystal)
+      : packageDataToEdit.push(result1.rows[0].albumcrystal);
     magazineMini
       ? packageDataToEdit.push(magazineMini)
       : packageDataToEdit.push(result1.rows[0].magazinemini);
@@ -91,6 +95,7 @@ const package = {
         name,
         pictures,
         magazineName,
+        albumCrystal,
         magazineMini,
         video,
         openPhotoAndVideo,
@@ -101,6 +106,7 @@ const package = {
         `INSERT INTO packages(name,
         pictures,
         magazineName,
+        albumCrystal,
         magazineMini,
         video,
         openPhotoAndVideo,
@@ -110,6 +116,7 @@ const package = {
           name,
           pictures,
           magazineName,
+          albumCrystal,
           magazineMini,
           video,
           openPhotoAndVideo,
