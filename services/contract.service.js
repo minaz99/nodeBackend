@@ -292,10 +292,7 @@ const contract = {
             new Date(contract.eventDate).getDate() <
             daysInNextMonth - daysNeededFromNextMonth
           )*/
-          kkk.push({
-            currentDate: new Date(contract.eventDate).getDate(),
-            condition: daysInNextMonth - daysNeededFromNextMonth,
-          });
+          kkk.push(new Date(contract.eventDate).getDate());
           contractsMonthDetails[
             daysNeededFromPreviousMonth +
               daysInMonth +
