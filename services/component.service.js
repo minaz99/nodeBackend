@@ -67,7 +67,7 @@ const component = {
       //editableProperties.push(req.params.id);
       //res.json({ query: query, editableProperties: editableProperties });
       const result = await db.query(
-        `UPDATE components SET componentType = $1 AND SET name = $2 AND SET price = $3`,
+        `UPDATE components SET componentType = $1, SET name = $2, SET price = $3`,
         [componentType, name, price]
       );
       res.json({ component: result.rows[0] });
