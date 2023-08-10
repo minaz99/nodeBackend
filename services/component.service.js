@@ -75,8 +75,8 @@ const component = {
   getComponentsByType: async (req, res) => {
     try {
       const result = await db.query(
-        `SELECT * FROM components where componentType=$1`,
-        [req.params.type]
+        `SELECT * FROM components where componentType LIKE $1`,
+        [`${req.params.type}%`]
       );
       res.json({ components: result.rows });
     } catch (err) {
