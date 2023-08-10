@@ -288,10 +288,7 @@ const contract = {
         });
 
         result3.rows.forEach((contract) => {
-          if (
-            new Date(contract.eventDate).getDay() <
-            daysInNextMonth - daysNeededFromNextMonth
-          )
+          if (new Date(contract.eventdate).getDate() <= daysNeededFromNextMonth)
             contractsMonthDetails[
               daysNeededFromPreviousMonth +
                 daysInMonth +
