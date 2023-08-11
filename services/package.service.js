@@ -83,7 +83,7 @@ const package = {
       : packageDataToEdit.push(result1.rows[0].price);
     packageDataToEdit.push(req.params.id);
     const result = await db.query(
-      `UPDATE packages SET name = $1, pictures = $2, magazineName = $3,albumCrystal = $4 magazineMini = $5, video = $6, openPhotoAndVideo = $7, studio = $8, price = $9 where id = $10`,
+      `UPDATE packages SET name = $1, pictures = $2, magazineName = $3,albumCrystal = $4, magazineMini = $5, video = $6, openPhotoAndVideo = $7, studio = $8, price = $9 where id = $10`,
       packageDataToEdit
     );
 
