@@ -96,6 +96,7 @@ const contract = {
   },
   getContractsByCriteria: async (req, res) => {
     try {
+      const page = req.query.page;
       const criteria = req.query.stage
         ? req.query.stage
         : req.query.photographer
@@ -122,7 +123,14 @@ const contract = {
         `SELECT * FROM contracts where ${columnCriteria} LIKE $1`,
         [`${criteria}%`]
       );
-      res.json({ contracts: result.rows });
+      res.json({
+        contracts: contractsPerPage(page, result.rows),
+        total: result.rows.length,
+        pages:
+          result.rows.length / 10 > parseInt(result.rows.length / 10)
+            ? parseInt(rows.length / 10) + 1
+            : parseInt(rows.length / 10),
+      });
     } catch (err) {
       res.status(400).json("error");
     }
