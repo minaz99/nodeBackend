@@ -28,7 +28,7 @@ const packageService = require("./services/package.service");
 //router.post("/register", userServices.register);
 app.post("/user/login", userServices.login);
 app.post("/user/register", userServices.register);
-app.get("/contracts/", authToken, contractService.getAllContracts);
+app.get("/contracts/page/:page", authToken, contractService.getAllContracts);
 app.get("/contracts/:id", authToken, contractService.getContractByID);
 app.get(
   "/contracts/filter/filterType",
@@ -60,7 +60,7 @@ app.get(
   authToken,
   contractService.getTableHeaderFilters
 );
-app.post("/contracts/page/:page", authToken, contractService.createContract);
+app.post("/contracts/", authToken, contractService.createContract);
 app.post("/contracts/:id", authToken, contractService.updateContractDetails);
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
 
