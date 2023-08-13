@@ -24,7 +24,11 @@ const contract = {
     try {
       const page = req.params.page;
       const { rows } = await db.query(`SELECT * FROM contracts`);
-      res.json({ contracts: contractsPerPage(page, rows) });
+      res.json({
+        contracts: contractsPerPage(page, rows),
+        total: rows.length,
+        pages: parseInt(rows.length / 10),
+      });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
