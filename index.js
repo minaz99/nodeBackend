@@ -60,7 +60,7 @@ app.get(
   authToken,
   contractService.getTableHeaderFilters
 );
-app.post("/contracts/", authToken, contractService.createContract);
+app.post("/contracts/page/:id", authToken, contractService.createContract);
 app.post("/contracts/:id", authToken, contractService.updateContractDetails);
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
 

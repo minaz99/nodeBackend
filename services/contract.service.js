@@ -14,11 +14,17 @@ function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();
 }
 
+const contractsPerPage = (pageNo, contracts) => {
+  pageNo *= 10;
+  return contracts.slice(pageNo - 10, pageNo - 1);
+};
+
 const contract = {
   getAllContracts: async (req, res) => {
     try {
+      const page = req.params.page;
       const { rows } = await db.query(`SELECT * FROM contracts`);
-      res.json({ contracts: rows });
+      res.json({ contracts: contractsPerPage(page, rows) });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
