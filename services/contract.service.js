@@ -128,8 +128,8 @@ const contract = {
         total: result.rows.length,
         pages:
           result.rows.length / 10 > parseInt(result.rows.length / 10)
-            ? parseInt(rows.length / 10) + 1
-            : parseInt(rows.length / 10),
+            ? parseInt(result.rows.length / 10) + 1
+            : parseInt(result.rows.length / 10),
       });
     } catch (err) {
       res.status(400).json("error");
