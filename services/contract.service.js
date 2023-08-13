@@ -193,7 +193,8 @@ const contract = {
   },
   getContractsByMultipleFilters: async (req, res) => {
     try {
-      const { brideName, eventType, eventLocation, contractStatus } = req.query;
+      const { page, brideName, eventType, eventLocation, contractStatus } =
+        req.query;
       /*const brideName = req.query.brideName;
       const eventType = req.query.eventType;
       const eventLocation = req.query.eventLocation;
@@ -225,7 +226,14 @@ const contract = {
         data.push(contractStatus);
       }
       const result = await db.query(query, data);
-      res.json({ contracts: result.rows });
+      res.json({
+        contracts: contractsPerPage(page, result.rows),
+        total: result.rows.length,
+        pages:
+          result.rows.length / 10 > parseInt(result.rows.length / 10)
+            ? parseInt(result.rows.length / 10) + 1
+            : parseInt(result.rows.length / 10),
+      });
 
       /*res.json({
         bride: brideName,
