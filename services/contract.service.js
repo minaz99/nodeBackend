@@ -165,7 +165,7 @@ const contract = {
         : result.rows[0].comments;
       const newEventLocation = eventLocation
         ? eventLocation
-        : result.rows[0].eventLocation;
+        : result.rows[0].eventlocation;
       const newEventDate = eventDate ? eventDate : result.rows[0].eventdate;
       const newPhotographer = photographer
         ? photographer
