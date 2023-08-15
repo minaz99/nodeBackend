@@ -360,6 +360,22 @@ const contract = {
       res.status(400).json({ error: err.msg });
     }
   },
+
+  getContractsByDay: async (req, res) => {
+    try {
+      const { day, month, year } = req.query;
+      const result = await db.query(
+        `SELECT * FROM contracts where EXTRACT(DAY FROM eventDate)=$1 EXTRACT(MONTH FROM eventDate)=$2 AND EXTRACT(YEAR FROM eventDate)=$3 `,
+        [parseInt(day), parseInt(month), parseInt(year)]
+      );
+      res.json({
+        Contracts: result.rows,
+      });
+    } catch (err) {
+      res.status(400).json({ error: err.msg });
+    }
+  },
+
   getTableHeaderFilters: async (req, res) => {
     try {
       const result = await db.query(`SELECT * FROM contracts`);
