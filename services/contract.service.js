@@ -369,7 +369,7 @@ const contract = {
         [parseInt(day), parseInt(month), parseInt(year)]
       );
       res.json({
-        Contracts: result.rows,
+        contracts: result.rows,
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
