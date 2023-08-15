@@ -365,7 +365,7 @@ const contract = {
     try {
       const { day, month, year } = req.query;
       const result = await db.query(
-        `SELECT * FROM contracts where EXTRACT(DAY FROM eventDate)=$1 EXTRACT(MONTH FROM eventDate)=$2 AND EXTRACT(YEAR FROM eventDate)=$3 `,
+        `SELECT * FROM contracts where EXTRACT(DAY FROM eventDate)=$1 AND EXTRACT(MONTH FROM eventDate)=$2 AND EXTRACT(YEAR FROM eventDate)=$3 `,
         [parseInt(day), parseInt(month), parseInt(year)]
       );
       res.json({
