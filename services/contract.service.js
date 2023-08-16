@@ -66,9 +66,10 @@ const contract = {
         componentIDs,
         contractStage,
         comments,
+        createdBy,
       } = req.body;
       const result = await db.query(
-        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)`,
+        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18)`,
         [
           secondPartyName,
           brideName,
@@ -87,6 +88,7 @@ const contract = {
           componentIDs,
           contractStage,
           comments,
+          createdBy,
         ]
       );
       res.status(200).json({ contract: result.rows[0] });
