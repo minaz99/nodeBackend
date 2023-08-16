@@ -206,9 +206,9 @@ const contract = {
       let paramterIndex = 1;
       let data = [];
       if (brideName) {
-        query += `brideName=$${paramterIndex}`;
+        query += `brideName LIKE $${paramterIndex}`;
         paramterIndex += 1;
-        data.push(brideName);
+        data.push(`${brideName}%`);
       }
       if (eventType) {
         if (paramterIndex > 1) query += " and ";
