@@ -161,9 +161,7 @@ const contract = {
       const result = await db.query(`SELECT * FROM contracts where id = $1`, [
         req.params.id,
       ]);
-      const newComments = comments
-        ? result.rows[0].comments + ". " + comments
-        : result.rows[0].comments;
+      const newComments = comments ? comments : result.rows[0].comments;
       const newEventLocation = eventLocation
         ? eventLocation
         : result.rows[0].eventlocation;
