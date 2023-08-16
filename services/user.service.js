@@ -25,7 +25,11 @@ const userServices = {
           if (err) throw err;
           if (isMatch) {
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-            res.json({ accessToken: accessToken, name: result.rows[0].name });
+            res.json({
+              accessToken: accessToken,
+              name: result.rows[0].name,
+              role: result.rows[0].role,
+            });
             //res.json({ name: result.rows[0].name });
           }
         });
@@ -38,7 +42,7 @@ const userServices = {
 
   register: async (req, res) => {
     try {
-      let { email, name, password } = req.body;
+      let { email, name, password, role } = req.body;
       let hashedPassword = await bcrypt.hash(password, 10);
       const result = await db.query(`SELECT * FROM users where email = $1`, [
         email,
@@ -46,10 +50,10 @@ const userServices = {
       if (result.rowCount > 0) res.status(409).json("User exists");
       else {
         const result2 = await db.query(
-          `INSERT INTO users (email,name,password) VALUES ($1, $2, $3)`,
-          [email, name, hashedPassword]
+          `INSERT INTO users (email,name,password,role) VALUES ($1, $2, $3, $4)`,
+          [email, name, hashedPassword, role]
         );
-        res.status(200).json({ data: name });
+        res.status(200).json({ data: name, role: role });
       }
       //}
     } catch (err) {
