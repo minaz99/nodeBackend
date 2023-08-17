@@ -69,7 +69,7 @@ const contract = {
         createdBy,
       } = req.body;
       const result = await db.query(
-        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18)`,
+        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18) RETURNING id`,
         [
           secondPartyName,
           brideName,
@@ -95,7 +95,7 @@ const contract = {
         `SELECT * FROM contracts where civilID = $1`,
         [civilID]
       );*/
-      res.status(200).json({ id: result.insertId });
+      res.status(200).json({ id: result.rows[0].id });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
