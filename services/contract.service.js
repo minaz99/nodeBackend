@@ -15,8 +15,8 @@ function getDaysInMonth(year, month) {
 }
 
 const contractsPerPage = (pageNo, contracts) => {
-  pageNo *= 10;
-  return contracts.slice(pageNo - 10, pageNo);
+  pageNo *= 9;
+  return contracts.slice(pageNo - 10, pageNo - 1);
 };
 
 const contract = {
@@ -129,9 +129,9 @@ const contract = {
         contracts: contractsPerPage(page, result.rows),
         total: result.rows.length,
         pages:
-          result.rows.length / 10 > parseInt(result.rows.length / 10)
-            ? parseInt(result.rows.length / 10) + 1
-            : parseInt(result.rows.length / 10),
+          result.rows.length / 9 > parseInt(result.rows.length / 9)
+            ? parseInt(result.rows.length / 9) + 1
+            : parseInt(result.rows.length / 9),
       });
     } catch (err) {
       res.status(400).json("error");
