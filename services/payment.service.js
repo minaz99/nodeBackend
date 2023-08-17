@@ -41,7 +41,7 @@ const payment = {
       let paymentNumber = rowCount + 1;
       const result = await db.query(
         `INSERT INTO payments(contractID,paymentNumber,amount) VALUES($1,$2,$3)`,
-        [req.params.id, paymentNumber, amount]
+        [req.params.id, paymentNumber, Math.abs(amount)]
       );
       res.json({ payment: result.rows });
     } catch (err) {
