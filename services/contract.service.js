@@ -95,7 +95,7 @@ const contract = {
         `SELECT * FROM contracts where civilID = $1`,
         [civilID]
       );*/
-      res.status(200).json({ id: result.oid });
+      res.status(200).json({ id: result.insertId });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
