@@ -16,7 +16,7 @@ function getDaysInMonth(year, month) {
 
 const contractsPerPage = (pageNo, contracts) => {
   pageNo *= 9;
-  return contracts.slice(pageNo - 9, pageNo - 1);
+  return contracts.slice(pageNo - 9, pageNo);
 };
 
 const contract = {
