@@ -91,7 +91,7 @@ const contract = {
           createdBy,
         ]
       );
-      res.status(200).json({ contract: result.rows[0], id: result.rows[0].id });
+      res.status(200).json({ contract: result.rows });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
