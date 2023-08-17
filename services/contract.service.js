@@ -91,7 +91,11 @@ const contract = {
           createdBy,
         ]
       );
-      res.status(200).json({ contract: result.rows });
+      /*const result2 = await db.query(
+        `SELECT * FROM contracts where civilID = $1`,
+        [civilID]
+      );*/
+      res.status(200).json({ id: result.oid });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
