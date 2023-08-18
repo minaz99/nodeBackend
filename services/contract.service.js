@@ -237,9 +237,9 @@ const contract = {
         contracts: contractsPerPage(page, result.rows),
         total: result.rows.length,
         pages:
-          result.rows.length / 10 > parseInt(result.rows.length / 10)
-            ? parseInt(result.rows.length / 10) + 1
-            : parseInt(result.rows.length / 10),
+          result.rows.length / 9 > parseInt(result.rows.length / 9)
+            ? parseInt(result.rows.length / 9) + 1
+            : parseInt(result.rows.length / 9),
       });
 
       /*res.json({
