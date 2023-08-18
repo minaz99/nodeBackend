@@ -28,9 +28,9 @@ const contract = {
         contracts: contractsPerPage(page, rows.reverse()),
         total: rows.length,
         pages:
-          result.rows.length / 9 > parseInt(result.rows.length / 9)
-            ? parseInt(result.rows.length / 9) + 1
-            : parseInt(result.rows.length / 9),
+          rows.length / 9 > parseInt(rows.length / 9)
+            ? parseInt(rows.length / 9) + 1
+            : parseInt(rows.length / 9),
       });
     } catch (err) {
       res.status(400).json({ error: err.msg });
