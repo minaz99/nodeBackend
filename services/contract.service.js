@@ -69,7 +69,7 @@ const contract = {
         createdBy,
       } = req.body;
       const result = await db.query(
-        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18) RETURNING id`,
+        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19) RETURNING id`,
         [
           secondPartyName,
           brideName,
@@ -89,6 +89,7 @@ const contract = {
           contractStage,
           comments,
           createdBy,
+          new Date().toLocaleDateString(),
         ]
       );
       /*const result2 = await db.query(
