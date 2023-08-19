@@ -169,6 +169,7 @@ const contract = {
         photographer,
         video,
         phone1,
+        phone2,
         contractStage,
         comments,
       } = req.body;
@@ -185,11 +186,12 @@ const contract = {
         : result.rows[0].photographer;
       const newVideo = video ? video : result.rows[0].video;
       const newPhone1 = phone1 ? phone1 : result.rows[0].phone1;
+      const newPhone2 = phone2 ? phone2 : result.rows[0].phone2;
       const newContractStage = contractStage
         ? contractStage
         : result.rows[0].contractstage;
       const result2 = await db.query(
-        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7 WHERE id = $8`,
+        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7, phone2=$8 WHERE id = $9`,
         [
           newEventLocation,
           newEventDate,
@@ -198,6 +200,7 @@ const contract = {
           newContractStage,
           newComments,
           newPhone1,
+          newPhone2,
           req.params.id,
         ]
       );
