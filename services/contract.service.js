@@ -6,7 +6,7 @@ const db = require("../dbConfig");
 const cors = require("cors");
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://julia-wedding.vercel.app/",
     methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
