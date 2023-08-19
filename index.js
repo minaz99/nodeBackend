@@ -9,7 +9,7 @@ const cors = require("cors");
 const authToken = require("./authToken");
 app.use(
   cors({
-    origin: "https://julia-wedding.vercel.app/",
+    origin: "https://julia-wedding.vercel.app",
     methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
