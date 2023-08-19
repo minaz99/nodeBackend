@@ -67,6 +67,7 @@ const contract = {
         contractStage,
         comments,
         createdBy,
+        paidAmount,
       } = req.body;
       const result = await db.query(
         `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy,dateCreated) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19) RETURNING id`,
@@ -92,6 +93,12 @@ const contract = {
           new Date().toLocaleDateString(),
         ]
       );
+      if (paidAmount > 0) {
+        const result2 = await db.query(
+          `INSERT INTO payments(contractID,paymentNumber,amount) VALUES($1,$2,$3)`,
+          [result.rows[0].id, 1, Math.abs(paidAmount)]
+        );
+      }
       /*const result2 = await db.query(
         `SELECT * FROM contracts where civilID = $1`,
         [civilID]
