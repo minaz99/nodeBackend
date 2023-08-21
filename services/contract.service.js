@@ -296,7 +296,7 @@ const contract = {
         nextMonth = 0;
       } else daysInNextMonth = getDaysInMonth(nextYear, nextMonth + 1);
 
-      if (daysNeededFromPreviousMonth !== 0) {
+      if (daysNeededFromPreviousMonth !== 0 || daysNeededFromNextMonth !== 0) {
         for (
           let i = daysInPrevMonth - daysNeededFromPreviousMonth + 1;
           i <= daysInPrevMonth;
