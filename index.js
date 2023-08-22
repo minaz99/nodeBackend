@@ -61,6 +61,11 @@ app.get(
   contractService.getTableHeaderFilters
 );
 app.get("/contracts/filter/day", authToken, contractService.getContractsByDay);
+app.get(
+  "/contracts/filter/month",
+  authToken,
+  contractService.getContractPerMonthForTable
+);
 app.post("/contracts/", authToken, contractService.createContract);
 app.post("/contracts/:id", authToken, contractService.updateContractDetails);
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
