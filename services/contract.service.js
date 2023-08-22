@@ -265,13 +265,21 @@ const contract = {
   },
   getContractPerMonthForTable: async (req, res) => {
     try {
+      const page = req.query.page;
       const month = req.query.month;
       const year = req.query.year;
-      const result = db.query(
+      const result = await db.query(
         `SELECT * FROM contracts where EXTRACT(MONTH FROM eventDate)=$1 AND EXTRACT(YEAR FROM eventDate)=$2`,
         [month, year]
       );
-      res.json({ contracts: (await result).rows });
+      res.json({
+        contracts: contractsPerPage(page, result.rows),
+        total: result.rows.length,
+        pages:
+          result.rows.length / 9 > parseInt(result.rows.length / 9)
+            ? parseInt(result.rows.length / 9) + 1
+            : parseInt(result.rows.length / 9),
+      });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
