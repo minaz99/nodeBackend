@@ -199,7 +199,7 @@ const contract = {
       // const newPrice = price ? price : result.rows[0].price;
       // const newPackageID = packageID ? packageID : result.rows[0].packageid;
       const result2 = await db.query(
-        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7, phone2=$8, componentsIds= $9 WHERE id = $10`,
+        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7, phone2=$8, componentIds= $9, price=$10, packageId=$11 WHERE id = $12`,
         [
           newEventLocation,
           newEventDate,
@@ -210,8 +210,8 @@ const contract = {
           newPhone1,
           newPhone2,
           newComponentIDs,
-          //   newPrice,
-          //   newPackageID,
+          newPrice,
+          newPackageID,
           req.params.id,
         ]
       );
