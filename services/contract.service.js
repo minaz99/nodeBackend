@@ -172,6 +172,8 @@ const contract = {
         phone2,
         contractStage,
         comments,
+        componentIDs,
+        price,
       } = req.body;
       const result = await db.query(`SELECT * FROM contracts where id = $1`, [
         req.params.id,
@@ -190,8 +192,12 @@ const contract = {
       const newContractStage = contractStage
         ? contractStage
         : result.rows[0].contractstage;
+      const newComponentIDs = componentIDs
+        ? componentIDs
+        : result.rows[0].componentids;
+      const newPrice = price ? price : result.rows[0].price;
       const result2 = await db.query(
-        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7, phone2=$8 WHERE id = $9`,
+        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7, phone2=$8, componentsIds= $9, price=$10 WHERE id = $11`,
         [
           newEventLocation,
           newEventDate,
@@ -201,6 +207,8 @@ const contract = {
           newComments,
           newPhone1,
           newPhone2,
+          newComponentIDs,
+          newPrice,
           req.params.id,
         ]
       );
