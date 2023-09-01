@@ -23,7 +23,9 @@ const package = {
       const result = await db.query(`SELECT * FROM packages where id = $1`, [
         req.params.id,
       ]);
-      res.json({ package: result.rows[0] });
+      result.rowCount > 0
+        ? res.json({ package: result.rows[0] })
+        : res.json({ package: null });
     } catch (err) {
       res.status(400).json({ error: err });
     }
