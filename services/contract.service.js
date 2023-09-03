@@ -183,6 +183,10 @@ const contract = {
         componentIDs,
         price,
         packageID,
+        zoomLight,
+        cameraCrane,
+        hangingCamera,
+        cameraRonin,
       } = req.body;
       const result = await db.query(`SELECT * FROM contracts where id = $1`, [
         req.params.id,
@@ -206,8 +210,18 @@ const contract = {
         : result.rows[0].componentids;
       const newPrice = price ? price : result.rows[0].price;
       const newPackageID = packageID ? packageID : result.rows[0].packageid;
+      const newZoomLight = zoomLight ? zoomLight : result.rows[0].zoomlight;
+      const newCameraCrane = cameraCrane
+        ? cameraCrane
+        : result.rows[0].cameracrane;
+      const newHangingCamera = hangingCamera
+        ? hangingCamera
+        : result.rows[0].hangingcamera;
+      const newCameraRonin = cameraRonin
+        ? cameraRonin
+        : result.rows[0].cameraronin;
       const result2 = await db.query(
-        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7, phone2=$8, componentIds= $9, price=$10, packageId=$11 WHERE id = $12`,
+        `UPDATE contracts SET eventLocation = $1, eventDate = $2, photographer = $3, video = $4, contractStage = $5, comments = $6, phone1=$7, phone2=$8, componentIds= $9, price=$10, packageId=$11, zoomLight=$12, cameraCrane=$13, hangingCamera=$14, cameraRonin=$15 WHERE id = $16`,
         [
           newEventLocation,
           newEventDate,
@@ -220,6 +234,10 @@ const contract = {
           newComponentIDs,
           newPrice,
           newPackageID,
+          newZoomLight,
+          newCameraCrane,
+          newHangingCamera,
+          newCameraRonin,
           req.params.id,
         ]
       );
