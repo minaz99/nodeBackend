@@ -71,9 +71,10 @@ const contract = {
         zoomLight,
         cameraCrane,
         hangingCamera,
+        cameraRonin,
       } = req.body;
       const result = await db.query(
-        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy,dateCreated, zoomLight,cameraCrane,hangingCamera) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22) RETURNING id`,
+        `INSERT INTO CONTRACTS(secondPartyName,brideName,groomName,eventType,eventLocation,eventDate,civilID,phone1,phone2,contractStatus,price,photographer,video,packageID,componentIDs,contractStage,comments,createdBy,dateCreated, zoomLight,cameraCrane,hangingCamera,cameraRonin) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23) RETURNING id`,
         [
           secondPartyName,
           brideName,
@@ -97,6 +98,7 @@ const contract = {
           zoomLight,
           cameraCrane,
           hangingCamera,
+          cameraRonin,
         ]
       );
       if (paidAmount > 0) {
