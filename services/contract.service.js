@@ -191,19 +191,19 @@ const contract = {
         `SELECT * FROM contractstages where contractID = $1`,
         [req.params.id]
       );
-      let newEventFinished =
-        eventFinished !== null ? eventFinished : result.rows[0].eventFinished;
-      let newPicsCollected =
-        picsCollected !== null ? picsCollected : result.rows[0].picsCollected;
-      let newVideoCollected =
-        videoCollected !== null
-          ? videoCollected
-          : result.rows[0].videoCollected;
-      let newPromoCollected =
-        promoCollected !== null
-          ? promoCollected
-          : result.rows[0].promoCollected;
-      let newFinished = finished !== null ? finished : result.rows[0].finished;
+      let newEventFinished = eventFinished
+        ? eventFinished
+        : result.rows[0].eventFinished;
+      let newPicsCollected = picsCollected
+        ? picsCollected
+        : result.rows[0].picsCollected;
+      let newVideoCollected = videoCollected
+        ? videoCollected
+        : result.rows[0].videoCollected;
+      let newPromoCollected = promoCollected
+        ? promoCollected
+        : result.rows[0].promoCollected;
+      let newFinished = finished ? finished : result.rows[0].finished;
       const result2 = await db.quert(
         `UPDATE contractstages SET eventFinished = $1, picsCollected = $2, videoCollected = $3, promoCollected = $4, finished = $5 where contractID = $6`,
         [
