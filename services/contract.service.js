@@ -204,7 +204,7 @@ const contract = {
         ? promoCollected
         : result.rows[0].promocollected;
       let newFinished = finished ? finished : result.rows[0].finished;
-      const result2 = await db.quert(
+      const result2 = await db.query(
         `UPDATE contractstages SET eventFinished = $1, picsCollected = $2, videoCollected = $3, promoCollected = $4, finished = $5 where contractID = $6`,
         [
           newEventFinished,
