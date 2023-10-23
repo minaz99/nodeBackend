@@ -45,8 +45,11 @@ const contract = {
         `SELECT * FROM contractstages where contractID = $1`,
         [rows[0].id]
       );
-      // if (rows[0].eventDate < new Date())
-      //await db.query(`UPDATE contracts SET ev`);
+      if (rows[0].eventdate < new Date())
+        await db.query(
+          `UPDATE contractstages SET eventFinished = $1 where contractID = $2`,
+          [true, req.params[`id`]]
+        );
       res.json({ contract: rows[0], stages: result.rows[0] });
     } catch (err) {
       res.status(400).json({ error: err.msg });
