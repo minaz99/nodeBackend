@@ -178,7 +178,48 @@ const contract = {
       res.status(400).json({ error: err.msg });
     }
   },
-
+  updateContractStages: async (req, res) => {
+    try {
+      const {
+        eventFinished,
+        picsCollected,
+        videoCollected,
+        promoCollected,
+        finished,
+      } = req.body;
+      const result = await db.query(
+        `SELECT * FROM contractstages where contractID = $1`,
+        [req.params.id]
+      );
+      let newEventFinished =
+        eventFinished !== null ? eventFinished : result.rows[0].eventFinished;
+      let newPicsCollected =
+        picsCollected !== null ? picsCollected : result.rows[0].picsCollected;
+      let newVideoCollected =
+        videoCollected !== null
+          ? videoCollected
+          : result.rows[0].videoCollected;
+      let newPromoCollected =
+        promoCollected !== null
+          ? promoCollected
+          : result.rows[0].promoCollected;
+      let newFinished = finished !== null ? finished : result.rows[0].finished;
+      const result2 = await db.quert(
+        `UPDATE contractstages SET eventFinished = $1, picsCollected = $2, videoCollected = $3, promoCollected = $4, finished = $5 where contractID = $6`,
+        [
+          newEventFinished,
+          newPicsCollected,
+          newVideoCollected,
+          newPromoCollected,
+          newFinished,
+          req.params.id,
+        ]
+      );
+      res.json(`Contract stage has been updated`);
+    } catch (err) {
+      res.status(400).json({ error: err.msg });
+    }
+  },
   updateContractDetails: async (req, res) => {
     try {
       const {
