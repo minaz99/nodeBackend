@@ -41,7 +41,13 @@ const contract = {
       const { rows } = await db.query(`SELECT * FROM contracts where id = $1`, [
         req.params[`id`],
       ]);
-      res.json({ contract: rows[0] });
+      const result = await db.query(
+        `SELECT * FROM contractstages where contractID = $1`,
+        [rows[0].id]
+      );
+      // if (rows[0].eventDate < new Date())
+      //await db.query(`UPDATE contracts SET ev`);
+      res.json({ contract: rows[0], stages: result.rows[0] });
     } catch (err) {
       res.status(400).json({ error: err.msg });
     }
@@ -107,6 +113,10 @@ const contract = {
           [result.rows[0].id, 1, Math.abs(paidAmount)]
         );
       }
+      const result3 = await db.query(
+        `INSERT INTO contractstages(contractID,signed,eventFinished,picsCollected,videoCollected,promoCollected,finished) VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+        [result.rows[0].id, true, false, false, false, false, false]
+      );
       /*const result2 = await db.query(
         `SELECT * FROM contracts where civilID = $1`,
         [civilID]
