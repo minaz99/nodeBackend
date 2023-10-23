@@ -68,6 +68,11 @@ app.get(
 );
 app.post("/contracts/", authToken, contractService.createContract);
 app.post("/contracts/:id", authToken, contractService.updateContractDetails);
+app.post(
+  "/contracts/:id/stages",
+  authToken,
+  contractService.updateContractStages
+);
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
 
 app.get("/components/", authToken, componentService.getComponents);
