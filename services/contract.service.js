@@ -193,16 +193,16 @@ const contract = {
       );
       let newEventFinished = eventFinished
         ? eventFinished
-        : result.rows[0].eventFinished;
+        : result.rows[0].eventfinished;
       let newPicsCollected = picsCollected
         ? picsCollected
-        : result.rows[0].picsCollected;
+        : result.rows[0].picscollected;
       let newVideoCollected = videoCollected
         ? videoCollected
-        : result.rows[0].videoCollected;
+        : result.rows[0].videocollected;
       let newPromoCollected = promoCollected
         ? promoCollected
-        : result.rows[0].promoCollected;
+        : result.rows[0].promocollected;
       let newFinished = finished ? finished : result.rows[0].finished;
       const result2 = await db.quert(
         `UPDATE contractstages SET eventFinished = $1, picsCollected = $2, videoCollected = $3, promoCollected = $4, finished = $5 where contractID = $6`,
