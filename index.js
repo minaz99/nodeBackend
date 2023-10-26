@@ -75,7 +75,7 @@ app.post(
 );
 app.post("/photographers", authToken, contractService.addPhotographer);
 app.get("/photographers", authToken, contractService.getPhotographersPerDate);
-app.post(
+app.put(
   "contract/:id/photographers/:photographerID",
   authToken,
   contractService.setPhotographerForContract
