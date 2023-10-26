@@ -73,6 +73,7 @@ app.post(
   authToken,
   contractService.updateContractStages
 );
+app.post("/photographers", authToken, contractService.addPhotographer);
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
 
 app.get("/components/", authToken, componentService.getComponents);
