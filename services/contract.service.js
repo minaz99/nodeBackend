@@ -555,6 +555,7 @@ const contract = {
   },
   setPhotographerForContract: async (req, res) => {
     try {
+      console.log(req.params);
       const id = req.params[`id`];
       const photographerID = req.params[`photographerID`];
       await db.query(`UPDATE photographers SET contractid = $1 where id = $2`, [
