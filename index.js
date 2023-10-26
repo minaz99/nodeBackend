@@ -74,6 +74,13 @@ app.post(
   contractService.updateContractStages
 );
 app.post("/photographers", authToken, contractService.addPhotographer);
+app.get("/photographers", authToken, contractService.getPhotographersPerDate);
+app.post(
+  "contract/:id/photographers/:photographerID",
+  authToken,
+  contractService.setPhotographerForContract
+);
+
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
 
 app.get("/components/", authToken, componentService.getComponents);

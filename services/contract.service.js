@@ -553,6 +553,34 @@ const contract = {
       res.status(400).json({ error: err });
     }
   },
+  setPhotographerForContract: async (req, res) => {
+    try {
+      const id = req.params[`id`];
+      const photograherID = req.params[`photographerID`];
+      await db.query(`UPDATE photographers SET contractid = $1 where id = $2`, [
+        id,
+        photograherID,
+      ]);
+      res.json("Photographer has been set");
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
+  getPhotographersPerDate: async (req, res) => {
+    try {
+      const { date, type } = req.body;
+      const day = new Date(date).getDay();
+      const month = new Date(date).getMonth();
+      const year = new Date(date).getFullYear();
+      const result = await db.query(
+        `SELECT * FROM photographers EXTRACT(DAY FROM date)=$1 AND EXTRACT(MONTH FROM date)=$2 AND EXTRACT(YEAR FROM date)=$3 AND type = $4`,
+        [day, month, year, type]
+      );
+      res.json({ Photographers: result.rows[0] });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };
 
 module.exports = contract;
