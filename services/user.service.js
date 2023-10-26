@@ -24,7 +24,11 @@ const userServices = {
         bcrypt.compare(password, result.rows[0].password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
-            const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+            const accessToken = jwt.sign(
+              user,
+              process.env.ACCESS_TOKEN_SECRET,
+              { expiresIn: "24h" }
+            );
             res.json({
               accessToken: accessToken,
               name: result.rows[0].name,
