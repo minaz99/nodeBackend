@@ -541,6 +541,18 @@ const contract = {
       res.status(400).json({ error: err });
     }
   },
+  addPhotographer: async (req, res) => {
+    try {
+      const { name, type, date } = req.body;
+      await db.query(
+        `INSERT INTO photographers (name,type,date) VALUES ($1,$2,$3)`,
+        [name, type, date]
+      );
+      res.json("Photographer Added");
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };
 
 module.exports = contract;
