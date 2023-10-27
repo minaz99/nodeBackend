@@ -574,7 +574,7 @@ const contract = {
       const month = new Date(date).getMonth();
       const year = new Date(date).getFullYear();
       const result = await db.query(
-        `SELECT * FROM photographers EXTRACT(DAY FROM date)=$1 AND EXTRACT(MONTH FROM date)=$2 AND EXTRACT(YEAR FROM date)=$3 AND type = $4`,
+        `SELECT * FROM photographers WHERE EXTRACT(DAY FROM date)=$1 AND EXTRACT(MONTH FROM date)=$2 AND EXTRACT(YEAR FROM date)=$3 AND type = $4`,
         [day, month, year, type]
       );
       res.json({ Photographers: result.rows[0] });
