@@ -570,8 +570,8 @@ const contract = {
   getPhotographersPerDate: async (req, res) => {
     try {
       const { date, type } = req.body;
-      const day = new Date(date).getDay();
-      const month = new Date(date).getMonth();
+      const day = new Date(date).getDate();
+      const month = new Date(date).getMonth() + 1;
       const year = new Date(date).getFullYear();
       const result = await db.query(
         `SELECT * FROM photographers WHERE EXTRACT(DAY FROM date)=$1 AND EXTRACT(MONTH FROM date)=$2 AND EXTRACT(YEAR FROM date)=$3 AND type = $4`,
