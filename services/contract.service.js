@@ -577,7 +577,7 @@ const contract = {
         `SELECT * FROM photographers WHERE EXTRACT(DAY FROM date)=$1 AND EXTRACT(MONTH FROM date)=$2 AND EXTRACT(YEAR FROM date)=$3 AND type = $4`,
         [day, month, year, type]
       );
-      res.json({ Photographers: result.rows[0] });
+      res.json({ Photographers: result.rows });
     } catch (err) {
       res.status(400).json({ error: err });
     }
