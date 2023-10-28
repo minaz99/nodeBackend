@@ -584,6 +584,19 @@ const contract = {
       res.status(400).json({ error: err });
     }
   },
+  getPhotographersPerTypeAndContract: async (req, res) => {
+    try {
+      const id = req.params[`id`];
+      const type = req.params[`type`];
+      const result = await db.query(
+        `SELECT * FROM photographers where contractID = $1 AND type = $2`,
+        [id, type]
+      );
+      res.json({ Photographers: result.rows });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };
 
 module.exports = contract;
