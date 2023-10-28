@@ -555,7 +555,7 @@ const contract = {
   },
   setPhotographerForContract: async (req, res) => {
     try {
-      console.log(req.params);
+      //console.log(req.params);
       const id = req.params[`id`];
       const photographerID = req.params[`photographerID`];
       await db.query(`UPDATE photographers SET contractid = $1 where id = $2`, [
@@ -569,7 +569,8 @@ const contract = {
   },
   getPhotographersPerDate: async (req, res) => {
     try {
-      const { date, type } = req.body;
+      const { date, type } = req.query;
+
       const day = new Date(date).getDate();
       const month = new Date(date).getMonth() + 1;
       const year = new Date(date).getFullYear();
