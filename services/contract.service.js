@@ -557,7 +557,7 @@ const contract = {
     try {
       //console.log(req.params);
       const id = req.params[`id`];
-      const photographerID = req.body;
+      const { photographerID } = req.body;
       await db.query(`UPDATE photographers SET contractid = $1 where id = $2`, [
         id,
         photographerID,
