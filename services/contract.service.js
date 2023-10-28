@@ -562,6 +562,7 @@ const contract = {
         id,
         photographerID,
       ]);
+      await db.query(`UPDATE contract`);
       res.json("Photographer has been set");
     } catch (err) {
       res.status(400).json({ error: err });
@@ -575,7 +576,7 @@ const contract = {
       const month = new Date(date).getMonth() + 1;
       const year = new Date(date).getFullYear();
       const result = await db.query(
-        `SELECT * FROM photographers WHERE EXTRACT(DAY FROM date)=$1 AND EXTRACT(MONTH FROM date)=$2 AND EXTRACT(YEAR FROM date)=$3 AND type = $4`,
+        `SELECT * FROM photographers WHERE EXTRACT(DAY FROM date)=$1 AND EXTRACT(MONTH FROM date)=$2 AND EXTRACT(YEAR FROM date)=$3 AND type = $4 AND contractID IS NULL`,
         [day, month, year, type]
       );
       res.json({ Photographers: result.rows });
