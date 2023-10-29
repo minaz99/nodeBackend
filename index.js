@@ -90,6 +90,11 @@ app.post(
   authToken,
   contractService.unsetPhotographerToContract
 );
+app.get(
+  "/contracts/:id/photographers",
+  authToken,
+  contractService.getAllPhotographersPerContract
+);
 
 app.post("/contracts/:id/payments", authToken, paymentService.makePayment);
 

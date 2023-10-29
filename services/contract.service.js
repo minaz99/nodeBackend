@@ -609,6 +609,18 @@ const contract = {
       res.status(400).json({ error: err });
     }
   },
+  getAllPhotographersPerContract: async (req, res) => {
+    try {
+      const contractID = req.params[`id`];
+      const result = await db.query(
+        `SELECT * FROM photographers where contractID = $1`,
+        [contractID]
+      );
+      res.json({ Photographers: result.rows });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };
 
 module.exports = contract;
