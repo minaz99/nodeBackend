@@ -562,7 +562,7 @@ const contract = {
         id,
         photographerID,
       ]);
-      await db.query(`UPDATE contract`);
+      //await db.query(`UPDATE contract`);
       res.json("Photographer has been set");
     } catch (err) {
       res.status(400).json({ error: err });
@@ -593,6 +593,18 @@ const contract = {
         [id, type]
       );
       res.json({ Photographers: result.rows });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
+  unsetPhotographerToContract: async (req, res) => {
+    try {
+      const { photographerID } = req.body;
+      await db.query(`UPDATE photographers SET contractID = $1 WHERE id = $2`, [
+        null,
+        photographerID,
+      ]);
+      res.json("Photographer has been unset");
     } catch (err) {
       res.status(400).json({ error: err });
     }
