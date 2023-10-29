@@ -616,7 +616,32 @@ const contract = {
         `SELECT * FROM photographers where contractID = $1`,
         [contractID]
       );
-      res.json({ Photographers: result.rows });
+      const photographer = result.rows.filter(
+        (photographer) => photographer.type === "Photographer"
+      );
+      const video = result.rows.filter(
+        (photographer) => photographer.type === "Video"
+      );
+      const zoomLight = result.rows.filter(
+        (photographer) => photographer.type === "Zoom Light"
+      );
+      const cameraCrane = result.rows.filter(
+        (photographer) => photographer.type === "Camera Crane"
+      );
+      const hangingCamera = result.rows.filter(
+        (photographer) => photographer.type === "Hanging Camera"
+      );
+      const cameraRonin = result.rows.filter(
+        (photographer) => photographer.type === "Camera Ronin"
+      );
+      res.json({
+        photographers: photographer,
+        video: video,
+        zoomLight: zoomLight,
+        cameraCrane: cameraCrane,
+        hangingCamera: hangingCamera,
+        cameraRonin: cameraRonin,
+      });
     } catch (err) {
       res.status(400).json({ error: err });
     }
