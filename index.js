@@ -86,7 +86,7 @@ app.post(
   contractService.setPhotographerForContract
 );
 app.post(
-  "/photographers/remove",
+  "/photographers/unset",
   authToken,
   contractService.unsetPhotographerToContract
 );
