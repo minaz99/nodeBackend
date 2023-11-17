@@ -646,6 +646,15 @@ const contract = {
       res.status(400).json({ error: err });
     }
   },
+  deleteContract: async (req, res) => {
+    try {
+      const contractID = req.params[`id`];
+      await db.query(`DELETE FROM contracts where id = $1`, [contractID]);
+      res.json("Contract deleted");
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };
 
 module.exports = contract;

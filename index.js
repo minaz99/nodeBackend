@@ -85,6 +85,7 @@ app.post(
   authToken,
   contractService.setPhotographerForContract
 );
+app.delete("/contracts/:id", authToken, contractService.deleteContract);
 app.post(
   "/photographers/unset",
   authToken,
